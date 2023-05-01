@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  EpisodeViewController.swift
 //  Rick & Morty
 //
 //  Created by Николай Никитин on 01.05.2023.
@@ -7,13 +7,11 @@
 
 import UIKit
 
-class ViewController: UIViewController {
-
+class EpisodeViewController: UIViewController {
+  
   override func viewDidLoad() {
     super.viewDidLoad()
-    // Do any additional setup after loading the view.
+    view.backgroundColor = .systemBackground
+    title = "Episodes"
   }
-
-
 }
-
