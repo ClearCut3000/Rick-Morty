@@ -9,11 +9,11 @@ import UIKit
 
 final class TabBarController: UITabBarController {
 
+  // MARK: - View Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
     setTabs()
   }
-
 
   // MARK: - Methods
   private func setTabs() {

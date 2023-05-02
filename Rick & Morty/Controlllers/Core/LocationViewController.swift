@@ -9,6 +9,7 @@ import UIKit
 
 final class LocationViewController: UIViewController {
 
+  // MARK: - View Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = .systemBackground

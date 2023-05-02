@@ -8,7 +8,8 @@
 import UIKit
 
 class EpisodeViewController: UIViewController {
-  
+
+  // MARK: - View Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = .systemBackground
