@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		364F1FC02A03016800E90711 /* Origin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364F1FBF2A03016800E90711 /* Origin.swift */; };
+		364F1FC22A0301D900E90711 /* SingleLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364F1FC12A0301D900E90711 /* SingleLocation.swift */; };
 		36853F942A00387500D8F79E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36853F932A00387500D8F79E /* AppDelegate.swift */; };
 		36853F962A00387500D8F79E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36853F952A00387500D8F79E /* SceneDelegate.swift */; };
 		36853F982A00387500D8F79E /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36853F972A00387500D8F79E /* TabBarController.swift */; };
@@ -25,6 +27,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		364F1FBF2A03016800E90711 /* Origin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Origin.swift; sourceTree = "<group>"; };
+		364F1FC12A0301D900E90711 /* SingleLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleLocation.swift; sourceTree = "<group>"; };
 		36853F902A00387500D8F79E /* Rick & Morty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rick & Morty.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		36853F932A00387500D8F79E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		36853F952A00387500D8F79E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -100,6 +104,8 @@
 				36853FAE2A003BC700D8F79E /* Location.swift */,
 				36853FB02A003C0A00D8F79E /* Character.swift */,
 				36853FB22A003C1500D8F79E /* Episode.swift */,
+				364F1FBF2A03016800E90711 /* Origin.swift */,
+				364F1FC12A0301D900E90711 /* SingleLocation.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -241,6 +247,8 @@
 				36853FBE2A01A5AA00D8F79E /* Service.swift in Sources */,
 				36853F962A00387500D8F79E /* SceneDelegate.swift in Sources */,
 				36853FB82A003CA600D8F79E /* LocationViewController.swift in Sources */,
+				364F1FC02A03016800E90711 /* Origin.swift in Sources */,
+				364F1FC22A0301D900E90711 /* SingleLocation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
