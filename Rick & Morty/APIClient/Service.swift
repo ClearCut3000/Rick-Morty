@@ -20,7 +20,7 @@ final class Service {
   /// - Parameters:
   ///   - request: Request instance
   ///   - completion: Callback with data of error
-  public func execute(_ request: Request, completion: @escaping () -> Void ) {
+  public func execute(_ request: Request, completion: @escaping (Result<String, Error>) -> Void ) {
 
   }
 }
