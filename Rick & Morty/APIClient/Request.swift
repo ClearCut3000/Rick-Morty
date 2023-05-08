@@ -11,11 +11,15 @@ import Foundation
 final class Request {
 
   // MARK: - Properties
+  /// API Constants
   private struct Constants {
     static let baseURL = "https://rickandmortyapi.com/api"
   }
+  /// Desired Endpoint
   private let endpoint: Endpoint
+  /// Path Components for API if any
   private let pathComponents: [String]
+  /// Query Components for API if anny
   private let queryParameters: [URLQueryItem]
   /// Constructed URL for API request in string format
   private var urlString: String {
@@ -40,8 +44,15 @@ final class Request {
   public var url: URL? {
     return URL(string: urlString)
   }
+  /// Deesired http method
+  public let httpMethod = "GET"
 
   // MARK: - Init
+  /// Construct request
+  /// - Parameters:
+  ///   - endpoint: target endpoint
+  ///   - pathComponents: colllection of path components
+  ///   - queryParameters: cillection query parameters
   init(endpoint: Endpoint,
        pathComponents: [String] = [],
        queryParameters: [URLQueryItem] = []) {
@@ -49,4 +60,9 @@ final class Request {
     self.pathComponents = pathComponents
     self.queryParameters = queryParameters
   }
+}
+
+// MARK: - Extension
+extension Request {
+  static let listCharactersRequest = Request(endpoint: .character)
 }

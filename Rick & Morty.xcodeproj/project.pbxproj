@@ -11,6 +11,7 @@
 		364F1FC22A0301D900E90711 /* SingleLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364F1FC12A0301D900E90711 /* SingleLocation.swift */; };
 		364F1FC42A03032C00E90711 /* CharacterStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364F1FC32A03032C00E90711 /* CharacterStatus.swift */; };
 		364F1FC62A03034A00E90711 /* CharacterGender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364F1FC52A03034A00E90711 /* CharacterGender.swift */; };
+		366CC33A2A09828D007BACE1 /* GetAllCharactersResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366CC3392A09828D007BACE1 /* GetAllCharactersResponse.swift */; };
 		36853F942A00387500D8F79E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36853F932A00387500D8F79E /* AppDelegate.swift */; };
 		36853F962A00387500D8F79E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36853F952A00387500D8F79E /* SceneDelegate.swift */; };
 		36853F982A00387500D8F79E /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36853F972A00387500D8F79E /* TabBarController.swift */; };
@@ -33,6 +34,7 @@
 		364F1FC12A0301D900E90711 /* SingleLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleLocation.swift; sourceTree = "<group>"; };
 		364F1FC32A03032C00E90711 /* CharacterStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterStatus.swift; sourceTree = "<group>"; };
 		364F1FC52A03034A00E90711 /* CharacterGender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterGender.swift; sourceTree = "<group>"; };
+		366CC3392A09828D007BACE1 /* GetAllCharactersResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAllCharactersResponse.swift; sourceTree = "<group>"; };
 		36853F902A00387500D8F79E /* Rick & Morty.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rick & Morty.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		36853F932A00387500D8F79E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		36853F952A00387500D8F79E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -63,6 +65,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		366CC3372A098248007BACE1 /* DataTypes */ = {
+			isa = PBXGroup;
+			children = (
+				36853FAE2A003BC700D8F79E /* Location.swift */,
+				36853FB02A003C0A00D8F79E /* Character.swift */,
+				364F1FC32A03032C00E90711 /* CharacterStatus.swift */,
+				364F1FC52A03034A00E90711 /* CharacterGender.swift */,
+				36853FB22A003C1500D8F79E /* Episode.swift */,
+				364F1FBF2A03016800E90711 /* Origin.swift */,
+				364F1FC12A0301D900E90711 /* SingleLocation.swift */,
+			);
+			name = DataTypes;
+			sourceTree = "<group>";
+		};
+		366CC3382A098260007BACE1 /* ResponseTypes */ = {
+			isa = PBXGroup;
+			children = (
+				366CC3392A09828D007BACE1 /* GetAllCharactersResponse.swift */,
+			);
+			name = ResponseTypes;
+			sourceTree = "<group>";
+		};
 		36853F872A00387500D8F79E = {
 			isa = PBXGroup;
 			children = (
@@ -105,13 +129,8 @@
 		36853FA82A003A1600D8F79E /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				36853FAE2A003BC700D8F79E /* Location.swift */,
-				36853FB02A003C0A00D8F79E /* Character.swift */,
-				36853FB22A003C1500D8F79E /* Episode.swift */,
-				364F1FBF2A03016800E90711 /* Origin.swift */,
-				364F1FC12A0301D900E90711 /* SingleLocation.swift */,
-				364F1FC32A03032C00E90711 /* CharacterStatus.swift */,
-				364F1FC52A03034A00E90711 /* CharacterGender.swift */,
+				366CC3382A098260007BACE1 /* ResponseTypes */,
+				366CC3372A098248007BACE1 /* DataTypes */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -245,6 +264,7 @@
 				36853FC02A01A5B900D8F79E /* Request.swift in Sources */,
 				36853FBA2A003CB300D8F79E /* EpisodeViewController.swift in Sources */,
 				36853FC22A01A65600D8F79E /* Endpoint.swift in Sources */,
+				366CC33A2A09828D007BACE1 /* GetAllCharactersResponse.swift in Sources */,
 				36853FB32A003C1500D8F79E /* Episode.swift in Sources */,
 				36853FBC2A003CBF00D8F79E /* SettingsViewController.swift in Sources */,
 				36853FB62A003C8E00D8F79E /* CharacterViewController.swift in Sources */,
