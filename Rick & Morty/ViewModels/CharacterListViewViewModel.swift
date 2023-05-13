@@ -20,8 +20,8 @@ extension CharacterListViewViewModel: UICollectionViewDataSource {
   }
 
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-    cell.backgroundColor = .cyan
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CharacterCollectionViewCell.identifier,
+                                                  for: indexPath)
     return cell
   }
 }
