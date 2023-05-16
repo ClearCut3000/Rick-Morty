@@ -14,7 +14,7 @@ final class CharacterCollectionViewCellViewModel {
   private let characterStatus: CharacterStatus
   private let characterImageURL: URL?
   public var characterStatusText: String {
-    characterStatus.rawValue
+    return "Status: \(characterStatus.text)"
   }
 
   // MARK: - Init
