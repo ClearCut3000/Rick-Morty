@@ -9,11 +9,18 @@ import UIKit
 
 protocol CharacterListViewViewModelDelegate: AnyObject {
   func didLoadInitialCharacters()
+  func didSelectCharacter(_ character: Character)
 }
 
+/// View Model to handle character list view logic
 final class CharacterListViewViewModel: NSObject {
 
+  // MARK: - ViewModel Properties
   public weak var delegate: CharacterListViewViewModelDelegate?
+
+  public var shouldShowLoadMoreIndicator: Bool {
+    return apiInfo?.next != nil
+  }
 
   private var characters: [Character] = []
 
@@ -28,6 +35,11 @@ final class CharacterListViewViewModel: NSObject {
     }
   }
 
+  private var apiInfo: Info? = nil
+
+
+  // MARK: - ViewModel Methods
+  /// Sets initial amount of characters(20)
   public func fetchCharacters() {
     Service.shared.execute(.listCharactersRequest,
                            expecting: GetAllCharactersResponse.self) { [weak self] result in
@@ -36,6 +48,7 @@ final class CharacterListViewViewModel: NSObject {
         let results = responseModel.results
         let info = responseModel.info
         self?.characters = results
+        self?.apiInfo = info
         DispatchQueue.main.async {
           self?.delegate?.didLoadInitialCharacters()
         }
@@ -43,6 +56,11 @@ final class CharacterListViewViewModel: NSObject {
         print(String(describing: error))
       }
     }
+  }
+
+  /// Paginate if additional characters  are needed
+  public func fetchAdditionalCharacters() {
+
   }
 }
 
@@ -62,16 +80,28 @@ extension CharacterListViewViewModel: UICollectionViewDataSource {
   }
 }
 
-//MARK: - CollectionView Delegate Protocol Extension
+// MARK: - CollectionView Delegate Protocol Extension
 extension CharacterListViewViewModel: UICollectionViewDelegate {
-
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    collectionView.deselectItem(at: indexPath, animated: true)
+    let character = characters[indexPath.row]
+    delegate?.didSelectCharacter(character)
+  }
 }
 
-//MARK: - CollectionView FlowLayout Protocol Extension
+// MARK: - CollectionView FlowLayout Protocol Extension
 extension CharacterListViewViewModel: UICollectionViewDelegateFlowLayout {
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     let bounds = UIScreen.main.bounds
     let width = (bounds.width - 30) / 2
     return CGSize(width: width, height: width * 1.5)
+  }
+}
+
+// MARK: - ScrollViewDelegate Protocol Extension
+extension CharacterListViewViewModel: UIScrollViewDelegate {
+  func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    guard shouldShowLoadMoreIndicator else { return }
+
   }
 }

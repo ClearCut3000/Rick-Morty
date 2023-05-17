@@ -13,6 +13,7 @@ final class CharacterViewController: UIViewController {
 
   // MARK: - View Lifecycle
   override func viewDidLoad() {
+    characterListView.delegate = self
     super.viewDidLoad()
     view.backgroundColor = .systemBackground
     title = "Characters"
@@ -22,5 +23,15 @@ final class CharacterViewController: UIViewController {
       characterListView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
       characterListView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
     ])
+  }
+}
+
+// MARK: - CharacterListViewDelegate Protocol Extension
+extension CharacterViewController: CharacterListViewDelegate {
+  func rmCharacterListView(_ characterListView: CharacterListView, didSelectCharacter character: Character) {
+    let viewModel = CharacterDetailViewViewModel(character: character)
+    let detailViewController = CharacterDetailViewController(viewModel:  viewModel)
+    detailViewController.navigationItem.largeTitleDisplayMode = .never
+    navigationController?.pushViewController(detailViewController, animated: true)
   }
 }
