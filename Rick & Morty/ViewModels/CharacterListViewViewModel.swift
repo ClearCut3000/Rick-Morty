@@ -18,6 +18,8 @@ final class CharacterListViewViewModel: NSObject {
   // MARK: - ViewModel Properties
   public weak var delegate: CharacterListViewViewModelDelegate?
 
+  public var isLoadingMoreCharacters = false
+
   public var shouldShowLoadMoreIndicator: Bool {
     return apiInfo?.next != nil
   }
@@ -60,7 +62,7 @@ final class CharacterListViewViewModel: NSObject {
 
   /// Paginate if additional characters  are needed
   public func fetchAdditionalCharacters() {
-
+    isLoadingMoreCharacters = true
   }
 }
 
@@ -87,6 +89,26 @@ extension CharacterListViewViewModel: UICollectionViewDelegate {
     let character = characters[indexPath.row]
     delegate?.didSelectCharacter(character)
   }
+
+  func collectionView(_ collectionView: UICollectionView,
+                      viewForSupplementaryElementOfKind kind: String,
+                      at indexPath: IndexPath) -> UICollectionReusableView {
+    guard kind == UICollectionView.elementKindSectionFooter,
+          let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
+                                                                       withReuseIdentifier: FooterLoadingCollectionReusableView.identtifier,
+                                                                       for: indexPath) as? FooterLoadingCollectionReusableView else {
+      fatalError("Unsupported !")
+    }
+    footer.startAnimating()
+    return footer
+  }
+
+  func collectionView(_ collectionView: UICollectionView,
+                      layout collectionViewLayout: UICollectionViewLayout,
+                      referenceSizeForFooterInSection section: Int) -> CGSize {
+    guard shouldShowLoadMoreIndicator else { return .zero }
+    return CGSize(width: collectionView.frame.width, height: 100)
+  }
 }
 
 // MARK: - CollectionView FlowLayout Protocol Extension
@@ -101,7 +123,12 @@ extension CharacterListViewViewModel: UICollectionViewDelegateFlowLayout {
 // MARK: - ScrollViewDelegate Protocol Extension
 extension CharacterListViewViewModel: UIScrollViewDelegate {
   func scrollViewDidScroll(_ scrollView: UIScrollView) {
-    guard shouldShowLoadMoreIndicator else { return }
-
+    guard shouldShowLoadMoreIndicator, !isLoadingMoreCharacters else { return }
+    let offset = scrollView.contentOffset.y
+    let totalContentHeight = scrollView.contentSize.height
+    let totalScrollViewFixedHeight = scrollView.frame.size.height
+    if offset >= (totalContentHeight - totalScrollViewFixedHeight - 120) {
+      fetchAdditionalCharacters()
+    }
   }
 }

@@ -33,6 +33,9 @@ final class CharacterListView: UIView {
     collectionView.alpha = 0
     collectionView.translatesAutoresizingMaskIntoConstraints = false
     collectionView.register(CharacterCollectionViewCell.self, forCellWithReuseIdentifier: CharacterCollectionViewCell.identifier)
+    collectionView.register(FooterLoadingCollectionReusableView.self,
+                            forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
+                            withReuseIdentifier: FooterLoadingCollectionReusableView.identtifier)
     return collectionView
   }()
 
