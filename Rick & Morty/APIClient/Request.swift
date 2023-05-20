@@ -60,6 +60,34 @@ final class Request {
     self.pathComponents = pathComponents
     self.queryParameters = queryParameters
   }
+
+  convenience init?(url: URL) {
+    let string = url.absoluteString
+    if string.contains(Constants.baseURL) {
+      return nil
+    }
+    let trimmed = string.replacingOccurrences(of: Constants.baseURL + "/", with: "")
+    if trimmed.contains("/") {
+      let components = trimmed.components(separatedBy: "/")
+      if !components.isEmpty {
+        let endpointString = components[0]
+        if let endpoint = Endpoint(rawValue: endpointString) {
+          self.init(endpoint: endpoint)
+          return
+        }
+      }
+    } else if trimmed.contains("?") {
+      let components = trimmed.components(separatedBy: "?")
+      if !components.isEmpty {
+        let endpointString = components[0]
+        if let endpoint = Endpoint(rawValue: endpointString) {
+          self.init(endpoint: endpoint)
+          return
+        }
+      }
+    }
+    return nil
+  }
 }
 
 // MARK: - Extension

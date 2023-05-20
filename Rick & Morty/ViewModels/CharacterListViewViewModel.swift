@@ -61,8 +61,18 @@ final class CharacterListViewViewModel: NSObject {
   }
 
   /// Paginate if additional characters  are needed
-  public func fetchAdditionalCharacters() {
+  public func fetchAdditionalCharacters(url: URL) {
     isLoadingMoreCharacters = true
+    guard let request = Request(url: url) else { return }
+    Service.shared.execute(request,
+                           expecting: GetAllCharactersResponse.self) { result in
+      switch result {
+      case .success(let success):
+        <#code#>
+      case .failure(let failure):
+        <#code#>
+      }
+    }
   }
 }
 
@@ -123,12 +133,15 @@ extension CharacterListViewViewModel: UICollectionViewDelegateFlowLayout {
 // MARK: - ScrollViewDelegate Protocol Extension
 extension CharacterListViewViewModel: UIScrollViewDelegate {
   func scrollViewDidScroll(_ scrollView: UIScrollView) {
-    guard shouldShowLoadMoreIndicator, !isLoadingMoreCharacters else { return }
+    guard shouldShowLoadMoreIndicator,
+          !isLoadingMoreCharacters,
+          let nexURLString = apiInfo?.next,
+          let url = URL(string: nexURLString) else { return }
     let offset = scrollView.contentOffset.y
     let totalContentHeight = scrollView.contentSize.height
     let totalScrollViewFixedHeight = scrollView.frame.size.height
     if offset >= (totalContentHeight - totalScrollViewFixedHeight - 120) {
-      fetchAdditionalCharacters()
+      fetchAdditionalCharacters(url: url)
     }
   }
 }
