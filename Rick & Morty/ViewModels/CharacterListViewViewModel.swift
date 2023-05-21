@@ -9,6 +9,7 @@ import UIKit
 
 protocol CharacterListViewViewModelDelegate: AnyObject {
   func didLoadInitialCharacters()
+  func didLoadMoreCharacters(with newIndexPaths: [IndexPath])
   func didSelectCharacter(_ character: Character)
 }
 
@@ -62,15 +63,27 @@ final class CharacterListViewViewModel: NSObject {
 
   /// Paginate if additional characters  are needed
   public func fetchAdditionalCharacters(url: URL) {
+    guard !isLoadingMoreCharacters else { return }
     isLoadingMoreCharacters = true
     guard let request = Request(url: url) else { return }
     Service.shared.execute(request,
-                           expecting: GetAllCharactersResponse.self) { result in
+                           expecting: GetAllCharactersResponse.self) { [weak self] result in
+      guard let self else { return }
       switch result {
       case .success(let success):
-        <#code#>
+        let additionalResults = success.results
+        let info = success.info
+        self.apiInfo = info
+        let originalCount = self.characters.count
+        let neewCount
+        self.characters.append(contentsOf: additionalResults)
+        DispatchQueue.main.async {
+          self.delegate?.didLoadMoreCharacters(with: [])
+          self.isLoadingMoreCharacters = false
+        }
       case .failure(let failure):
-        <#code#>
+        print(String(describing: failure))
+        self.isLoadingMoreCharacters = false
       }
     }
   }
@@ -135,13 +148,17 @@ extension CharacterListViewViewModel: UIScrollViewDelegate {
   func scrollViewDidScroll(_ scrollView: UIScrollView) {
     guard shouldShowLoadMoreIndicator,
           !isLoadingMoreCharacters,
+          !cellViewModels.isEmpty,
           let nexURLString = apiInfo?.next,
           let url = URL(string: nexURLString) else { return }
-    let offset = scrollView.contentOffset.y
-    let totalContentHeight = scrollView.contentSize.height
-    let totalScrollViewFixedHeight = scrollView.frame.size.height
-    if offset >= (totalContentHeight - totalScrollViewFixedHeight - 120) {
-      fetchAdditionalCharacters(url: url)
+    Timer.scheduledTimer(withTimeInterval: 0.2, repeats: false) { [weak self] timer in
+      let offset = scrollView.contentOffset.y
+      let totalContentHeight = scrollView.contentSize.height
+      let totalScrollViewFixedHeight = scrollView.frame.size.height
+      if offset >= (totalContentHeight - totalScrollViewFixedHeight - 120) {
+        self?.fetchAdditionalCharacters(url: url)
+      }
+      timer.invalidate()
     }
   }
 }
