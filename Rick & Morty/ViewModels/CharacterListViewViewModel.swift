@@ -25,18 +25,20 @@ final class CharacterListViewViewModel: NSObject {
     return apiInfo?.next != nil
   }
 
-  private var characters: [Character] = []
-
-  private var cellViewModels: [CharacterCollectionViewCellViewModel] = [] {
+  private var characters: [Character] = [] {
     didSet {
       characters.forEach { character in
         let viewModel = CharacterCollectionViewCellViewModel(characterName: character.name,
                                                              characterStatus: character.status,
                                                              characterImageURL: URL(string: character.image))
-        cellViewModels.append(viewModel)
+        if !cellViewModels.contains(viewModel) {
+          cellViewModels.append(viewModel)
+        }
       }
     }
   }
+
+  private var cellViewModels: [CharacterCollectionViewCellViewModel] = []
 
   private var apiInfo: Info? = nil
 
@@ -75,10 +77,15 @@ final class CharacterListViewViewModel: NSObject {
         let info = success.info
         self.apiInfo = info
         let originalCount = self.characters.count
-        let neewCount
+        let newCount = additionalResults.count
+        let total = originalCount + newCount
+        let startingIndex = total - newCount
+        let indexPathToAdd: [IndexPath] = Array(startingIndex ..< (startingIndex + newCount)).compactMap {
+          return IndexPath(row: $0, section: 0)
+        }
         self.characters.append(contentsOf: additionalResults)
         DispatchQueue.main.async {
-          self.delegate?.didLoadMoreCharacters(with: [])
+          self.delegate?.didLoadMoreCharacters(with: indexPathToAdd)
           self.isLoadingMoreCharacters = false
         }
       case .failure(let failure):

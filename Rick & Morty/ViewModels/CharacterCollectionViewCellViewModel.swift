@@ -7,8 +7,7 @@
 
 import Foundation
 
-final class CharacterCollectionViewCellViewModel {
-
+final class CharacterCollectionViewCellViewModel: Hashable, Equatable {
   // MARK: - Properties
   public let characterName: String
   private let characterStatus: CharacterStatus
@@ -27,6 +26,10 @@ final class CharacterCollectionViewCellViewModel {
   }
 
   // MARK: - Methods
+  static func == (lhs: CharacterCollectionViewCellViewModel, rhs: CharacterCollectionViewCellViewModel) -> Bool {
+    return lhs.hashValue == rhs.hashValue
+  }
+
   public func fetchImage(completion: @escaping (Result<Data, Error>) -> Void) {
     guard let url = characterImageURL else {
       completion(.failure(URLError(.badURL)))
@@ -41,5 +44,11 @@ final class CharacterCollectionViewCellViewModel {
       completion(.success(data))
     }
     task.resume()
+  }
+
+  func hash(into hasher: inout Hasher) {
+    hasher.combine(characterName)
+    hasher.combine(characterStatus)
+    hasher.combine(characterImageURL)
   }
 }
