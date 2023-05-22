@@ -14,6 +14,9 @@ final class CharacterDetailViewViewModel {
   public var title: String {
     character.name.uppercased()
   }
+  private var requestURL: URL? {
+    return URL(string: character.url)
+  }
 
   //MARK: - Init
   init(character: Character) {
