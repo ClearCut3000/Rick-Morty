@@ -12,11 +12,12 @@ final class CharacterDetailViewController: UIViewController {
 
   // MARK: - Properties
   private let viewModel: CharacterDetailViewViewModel
-  private let detailView = CharacterDetailView()
+  private let detailView: CharacterDetailView
 
   // MARK: - Init's
   init(viewModel: CharacterDetailViewViewModel) {
     self.viewModel = viewModel
+    self.detailView = CharacterDetailView(frame: .zero, viewModel: viewModel)
     super.init(nibName: nil, bundle: nil)
   }
 
@@ -34,6 +35,8 @@ final class CharacterDetailViewController: UIViewController {
                                                         target: self,
                                                         action: #selector(didTapShare))
     addConstraints()
+    detailView.collectionView?.dataSource = self
+    detailView.collectionView?.delegate = self 
   }
 
   // MARK: - Meethods
@@ -48,5 +51,25 @@ final class CharacterDetailViewController: UIViewController {
 
   @objc private func didTapShare() {
     
+  }
+}
+
+// MARK: - UICollectionViewDelegate Protocol Extension
+extension CharacterDetailViewController: UICollectionViewDelegate {
+  func numberOfSections(in collectionView: UICollectionView) -> Int {
+    return viewModel.sections.count
+  }
+}
+
+// MARK: - UICollectionViewDataSource Protocol Extension
+extension CharacterDetailViewController: UICollectionViewDataSource {
+  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    return 10
+  }
+
+  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "UICollectionViewCell", for: indexPath)
+    cell.backgroundColor = .systemGray
+    return cell
   }
 }
