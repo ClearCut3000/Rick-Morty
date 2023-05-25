@@ -85,7 +85,6 @@ extension CharacterDetailViewController: UICollectionViewDataSource {
         fatalError()
       }
       cell.configure(with: viewModel)
-      cell.backgroundColor = .cyan
       return cell
     case .information(viewModel: let viewModels):
       guard let cell = collectionView
@@ -94,7 +93,6 @@ extension CharacterDetailViewController: UICollectionViewDataSource {
         fatalError()
       }
       cell.configure(with: viewModels[indexPath.row])
-      cell.backgroundColor = .blue
       return cell
     case .episodes(viewModel: let viewModels):
       guard let cell = collectionView
@@ -103,7 +101,6 @@ extension CharacterDetailViewController: UICollectionViewDataSource {
         fatalError()
       }
       cell.configure(with: viewModels[indexPath.row])
-      cell.backgroundColor = .green
       return cell
     }
   }

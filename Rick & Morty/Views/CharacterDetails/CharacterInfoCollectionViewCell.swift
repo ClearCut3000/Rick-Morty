@@ -15,6 +15,8 @@ class CharacterInfoCollectionViewCell: UICollectionViewCell {
   // MARK: - Init's
   override init(frame: CGRect) {
     super.init(frame: frame)
+    contentView.backgroundColor = .tertiarySystemBackground
+    contentView.layer.cornerRadius = 8
     setupConstraints()
   }
 
