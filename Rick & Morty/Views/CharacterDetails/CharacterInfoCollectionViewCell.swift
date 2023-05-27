@@ -69,7 +69,8 @@ class CharacterInfoCollectionViewCell: UICollectionViewCell {
   }
 
   public func configure(with viewModel: CharacterInfoCollectionViewCellViewModel) {
-
+    titleLabel.text = viewModel.title
+    valueLabel.text = viewModel.value
   }
 
   private func setupConstraints() {
