@@ -15,6 +15,7 @@ class CharacterInfoCollectionViewCell: UICollectionViewCell {
   // MARK: - Subview's
   private let valueLabel: UILabel = {
     let label = UILabel()
+    label.numberOfLines = 0
     label.translatesAutoresizingMaskIntoConstraints = false
     label.text = "Earth"
     label.font = .systemFont(ofSize: 22, weight: .light)
@@ -65,12 +66,18 @@ class CharacterInfoCollectionViewCell: UICollectionViewCell {
     super.prepareForReuse()
     valueLabel.text = nil
     titleLabel.text = nil
+    titleLabel.tintColor = .label
     iconImageView.image = nil
+    iconImageView.tintColor = .label
   }
 
   public func configure(with viewModel: CharacterInfoCollectionViewCellViewModel) {
     titleLabel.text = viewModel.title
-    valueLabel.text = viewModel.value
+    titleLabel.tintColor = viewModel.tintColor
+    valueLabel.text = viewModel.displayValue
+    iconImageView.image = viewModel.iconImage
+    iconImageView.tintColor = viewModel.tintColor
+
   }
 
   private func setupConstraints() {
@@ -92,8 +99,8 @@ class CharacterInfoCollectionViewCell: UICollectionViewCell {
 
       valueLabel.leftAnchor.constraint(equalTo: iconImageView.rightAnchor),
       valueLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10),
-      valueLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 38),
-      valueLabel.heightAnchor.constraint(equalToConstant: 32)
+      valueLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
+      valueLabel.bottomAnchor.constraint(equalTo: titleContainerView.topAnchor)
     ])
   }
 }

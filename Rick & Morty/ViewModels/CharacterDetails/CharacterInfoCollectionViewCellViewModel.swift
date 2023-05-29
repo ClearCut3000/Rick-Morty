@@ -6,17 +6,46 @@
 //
 
 import Foundation
+import UIKit
 
 final class CharacterInfoCollectionViewCellViewModel {
 
   // MARK: - Properties
+  static let dateFormatter: DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSZ"
+    formatter.timeZone = .current
+    return formatter
+  }()
+  static let shortDateFormatter: DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.dateStyle = .medium
+    formatter.timeStyle = .short
+    return formatter
+  }()
   private let infoType: InfoType
-  public let value: String
+  private let value: String
   public var title: String {
-    self.infoType.displayTitle
+    infoType.displayTitle
+  }
+  public var displayValue: String {
+    if value.isEmpty { return "None" }
+    if let date = Self.dateFormatter.date(from: value),
+       infoType == .created {
+      return  Self.shortDateFormatter.string(from: date)
+    }
+    return value
   }
 
-  enum InfoType {
+  public var iconImage: UIImage? {
+    return infoType.iconImage
+  }
+
+  public var tintColor: UIColor {
+    return infoType.tintColor
+  }
+
+  enum InfoType: String {
     case status
     case gender
     case type
@@ -26,24 +55,54 @@ final class CharacterInfoCollectionViewCellViewModel {
     case location
     case episodeCount
 
-    var displayTitle: String {
+    var tintColor: UIColor {
       switch self {
       case .status:
-        <#code#>
+        return .systemBlue
       case .gender:
-        <#code#>
+        return .systemRed
       case .type:
-        <#code#>
+        return .systemCyan
       case .species:
-        <#code#>
+        return .systemMint
       case .origin:
-        <#code#>
+        return .systemPink
       case .created:
-        <#code#>
+        return .systemYellow
       case .location:
-        <#code#>
+        return .systemOrange
       case .episodeCount:
-        <#code#>
+        return .systemPurple
+      }
+    }
+
+    var iconImage: UIImage? {
+      switch self {
+      case .status:
+        return UIImage(systemName: "bell")
+      case .gender:
+        return UIImage(systemName: "bell")
+      case .type:
+        return UIImage(systemName: "bell")
+      case .species:
+        return UIImage(systemName: "bell")
+      case .origin:
+        return UIImage(systemName: "bell")
+      case .created:
+        return UIImage(systemName: "bell")
+      case .location:
+        return UIImage(systemName: "bell")
+      case .episodeCount:
+        return UIImage(systemName: "bell")
+      }
+    }
+
+    var displayTitle: String {
+      switch self {
+      case .status, .gender, .type, .species, .origin, .created, .location:
+        return rawValue.uppercased()
+      case .episodeCount:
+        return "Episode Count"
       }
     }
   }

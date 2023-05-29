@@ -16,6 +16,8 @@ class CharacterEpisodeCollectionViewCell: UICollectionViewCell {
   override init(frame: CGRect) {
     super.init(frame: frame)
     contentView.backgroundColor = .tertiarySystemBackground
+    contentView.backgroundColor = .tertiarySystemBackground
+    contentView.layer.cornerRadius = 8
     setupConstraints()
   }
 
@@ -29,7 +31,10 @@ class CharacterEpisodeCollectionViewCell: UICollectionViewCell {
   }
 
   public func configure(with viewModel: CharacterEpisodeCollectionViewCellViewModel) {
-
+    viewModel.registedForData { data in
+      
+    }
+    viewModel.fetchEpisode()
   }
 
   private func setupConstraints() {
