@@ -51,7 +51,7 @@ final class CharacterEpisodeCollectionViewCellViewModel {
           self?.episode = success
         }
       case .failure(let failure):
-        
+        print(String(describing: failure))
       }
     }
   }

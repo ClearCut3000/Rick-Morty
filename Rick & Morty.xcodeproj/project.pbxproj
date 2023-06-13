@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3628B2142A390E2A00BF0B1C /* EpisodeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3628B2132A390E2A00BF0B1C /* EpisodeDetailViewController.swift */; };
 		364F1FC02A03016800E90711 /* Origin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364F1FBF2A03016800E90711 /* Origin.swift */; };
 		364F1FC22A0301D900E90711 /* SingleLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364F1FC12A0301D900E90711 /* SingleLocation.swift */; };
 		364F1FC42A03032C00E90711 /* CharacterStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364F1FC32A03032C00E90711 /* CharacterStatus.swift */; };
@@ -46,6 +47,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3628B2132A390E2A00BF0B1C /* EpisodeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeDetailViewController.swift; sourceTree = "<group>"; };
 		364F1FBF2A03016800E90711 /* Origin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Origin.swift; sourceTree = "<group>"; };
 		364F1FC12A0301D900E90711 /* SingleLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleLocation.swift; sourceTree = "<group>"; };
 		364F1FC32A03032C00E90711 /* CharacterStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterStatus.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				366CC3472A156430007BACE1 /* CharacterDetailViewController.swift */,
+				3628B2132A390E2A00BF0B1C /* EpisodeDetailViewController.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -377,6 +380,7 @@
 				366CC34A2A1564EB007BACE1 /* CharacterDetailView.swift in Sources */,
 				364F1FC02A03016800E90711 /* Origin.swift in Sources */,
 				366CC3502A1AC680007BACE1 /* ImageLoader.swift in Sources */,
+				3628B2142A390E2A00BF0B1C /* EpisodeDetailViewController.swift in Sources */,
 				366CC33C2A098D3C007BACE1 /* CharacterListViewViewModel.swift in Sources */,
 				366CC3432A10180C007BACE1 /* CharacterCollectionViewCell.swift in Sources */,
 				366CC34C2A156515007BACE1 /* CharacterDetailViewViewModel.swift in Sources */,

@@ -12,6 +12,9 @@ final class CharacterDetailViewViewModel {
 
   // MARK: - Properties
   private let character: Character
+  public var episodes: [String] {
+    character.episode
+  }
   public var title: String {
     character.name.uppercased()
   }
