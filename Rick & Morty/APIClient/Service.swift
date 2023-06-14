@@ -11,6 +11,8 @@ import Foundation
 final class Service {
   /// Shared singleton
   static let shared = Service()
+
+  private let cacheManager = CacheManager()
   /// Errors
   enum ServiceError: Error {
     case failedToCreateRequest
