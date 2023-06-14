@@ -10,11 +10,11 @@ import UIKit
 final class EpisodeDetailViewController: UIViewController {
 
   // MARK: - Properties
-  private let url: URL?
+  private let viewModel: EpisodeDetailViewViewModel
 
   // MARK: - Init's
   init(url: URL?) {
-    self.url = url
+    self.viewModel = .init(endpointURL: url)
     super.init(nibName: nil, bundle: nil)
   }
 

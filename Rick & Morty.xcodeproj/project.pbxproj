@@ -39,6 +39,8 @@
 		36853FC02A01A5B900D8F79E /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36853FBF2A01A5B900D8F79E /* Request.swift */; };
 		36853FC22A01A65600D8F79E /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36853FC12A01A65600D8F79E /* Endpoint.swift */; };
 		369E4CCD2A3A3CFF00306AD4 /* CacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369E4CCC2A3A3CFF00306AD4 /* CacheManager.swift */; };
+		369E4CCF2A3A461000306AD4 /* EpisodeDetailViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369E4CCE2A3A461000306AD4 /* EpisodeDetailViewViewModel.swift */; };
+		369E4CD12A3A46A400306AD4 /* EpisodeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369E4CD02A3A46A400306AD4 /* EpisodeDetailView.swift */; };
 		36C1AE2A2A1FEFA4005E67AF /* CharacterPhotoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C1AE292A1FEFA4005E67AF /* CharacterPhotoCollectionViewCell.swift */; };
 		36C1AE2C2A1FEFB1005E67AF /* CharacterInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C1AE2B2A1FEFB1005E67AF /* CharacterInfoCollectionViewCell.swift */; };
 		36C1AE2E2A1FEFCC005E67AF /* CharacterEpisodeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C1AE2D2A1FEFCC005E67AF /* CharacterEpisodeCollectionViewCell.swift */; };
@@ -82,6 +84,8 @@
 		36853FBF2A01A5B900D8F79E /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		36853FC12A01A65600D8F79E /* Endpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
 		369E4CCC2A3A3CFF00306AD4 /* CacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheManager.swift; sourceTree = "<group>"; };
+		369E4CCE2A3A461000306AD4 /* EpisodeDetailViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeDetailViewViewModel.swift; sourceTree = "<group>"; };
+		369E4CD02A3A46A400306AD4 /* EpisodeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeDetailView.swift; sourceTree = "<group>"; };
 		36C1AE292A1FEFA4005E67AF /* CharacterPhotoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterPhotoCollectionViewCell.swift; sourceTree = "<group>"; };
 		36C1AE2B2A1FEFB1005E67AF /* CharacterInfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterInfoCollectionViewCell.swift; sourceTree = "<group>"; };
 		36C1AE2D2A1FEFCC005E67AF /* CharacterEpisodeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterEpisodeCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -196,6 +200,7 @@
 				36C1AE282A1FEF6A005E67AF /* Character */,
 				36C1AE272A1FEF4B005E67AF /* CharacterDetails */,
 				366CC34D2A169411007BACE1 /* FooterLoadingCollectionReusableView.swift */,
+				369E4CD02A3A46A400306AD4 /* EpisodeDetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -206,6 +211,7 @@
 				366CC33B2A098D3C007BACE1 /* CharacterListViewViewModel.swift */,
 				366CC3442A10191B007BACE1 /* CharacterCollectionViewCellViewModel.swift */,
 				36C1AE2F2A1FEFE1005E67AF /* CharacterDetails */,
+				369E4CCE2A3A461000306AD4 /* EpisodeDetailViewViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -360,6 +366,7 @@
 				36853FC02A01A5B900D8F79E /* Request.swift in Sources */,
 				36853FBA2A003CB300D8F79E /* EpisodeViewController.swift in Sources */,
 				36853FC22A01A65600D8F79E /* Endpoint.swift in Sources */,
+				369E4CD12A3A46A400306AD4 /* EpisodeDetailView.swift in Sources */,
 				366CC33A2A09828D007BACE1 /* GetAllCharactersResponse.swift in Sources */,
 				36C1AE2A2A1FEFA4005E67AF /* CharacterPhotoCollectionViewCell.swift in Sources */,
 				36853FB32A003C1500D8F79E /* Episode.swift in Sources */,
@@ -380,6 +387,7 @@
 				36853FB82A003CA600D8F79E /* LocationViewController.swift in Sources */,
 				366CC34E2A169411007BACE1 /* FooterLoadingCollectionReusableView.swift in Sources */,
 				364F1FC62A03034A00E90711 /* CharacterGender.swift in Sources */,
+				369E4CCF2A3A461000306AD4 /* EpisodeDetailViewViewModel.swift in Sources */,
 				366CC34A2A1564EB007BACE1 /* CharacterDetailView.swift in Sources */,
 				369E4CCD2A3A3CFF00306AD4 /* CacheManager.swift in Sources */,
 				364F1FC02A03016800E90711 /* Origin.swift in Sources */,
