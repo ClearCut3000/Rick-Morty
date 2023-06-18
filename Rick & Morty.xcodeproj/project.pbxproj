@@ -48,6 +48,7 @@
 		36C1AE332A1FF02C005E67AF /* CharacterInfoCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C1AE322A1FF02C005E67AF /* CharacterInfoCollectionViewCellViewModel.swift */; };
 		36C1AE352A1FF03D005E67AF /* CharacterEpisodeCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C1AE342A1FF03D005E67AF /* CharacterEpisodeCollectionViewCellViewModel.swift */; };
 		36F32BA72A3E4E5C00D525F3 /* EpisodeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F32BA62A3E4E5C00D525F3 /* EpisodeListView.swift */; };
+		36F32BA92A3F9AA600D525F3 /* EpisodeListViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F32BA82A3F9AA600D525F3 /* EpisodeListViewViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,6 +95,7 @@
 		36C1AE322A1FF02C005E67AF /* CharacterInfoCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterInfoCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
 		36C1AE342A1FF03D005E67AF /* CharacterEpisodeCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterEpisodeCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
 		36F32BA62A3E4E5C00D525F3 /* EpisodeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeListView.swift; sourceTree = "<group>"; };
+		36F32BA82A3F9AA600D525F3 /* EpisodeListViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeListViewViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,6 +217,7 @@
 				366CC3442A10191B007BACE1 /* CharacterCollectionViewCellViewModel.swift */,
 				36C1AE2F2A1FEFE1005E67AF /* CharacterDetails */,
 				369E4CCE2A3A461000306AD4 /* EpisodeDetailViewViewModel.swift */,
+				36F32BA82A3F9AA600D525F3 /* EpisodeListViewViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -407,6 +410,7 @@
 				3628B2142A390E2A00BF0B1C /* EpisodeDetailViewController.swift in Sources */,
 				366CC33C2A098D3C007BACE1 /* CharacterListViewViewModel.swift in Sources */,
 				366CC3432A10180C007BACE1 /* CharacterCollectionViewCell.swift in Sources */,
+				36F32BA92A3F9AA600D525F3 /* EpisodeListViewViewModel.swift in Sources */,
 				366CC34C2A156515007BACE1 /* CharacterDetailViewViewModel.swift in Sources */,
 				364F1FC22A0301D900E90711 /* SingleLocation.swift in Sources */,
 			);

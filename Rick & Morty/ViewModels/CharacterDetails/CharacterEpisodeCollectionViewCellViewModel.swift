@@ -13,7 +13,7 @@ protocol EpisodeDataRender {
   var air_date: String { get }
 }
 
-final class CharacterEpisodeCollectionViewCellViewModel {
+final class CharacterEpisodeCollectionViewCellViewModel: Hashable, Equatable {
 
   // MARK: - Properties
   public let episodeDataURL: URL?
@@ -54,5 +54,13 @@ final class CharacterEpisodeCollectionViewCellViewModel {
         print(String(describing: failure))
       }
     }
+  }
+
+  static func == (lhs: CharacterEpisodeCollectionViewCellViewModel, rhs: CharacterEpisodeCollectionViewCellViewModel) -> Bool {
+    return lhs.hashValue == rhs.hashValue
+  }
+
+  func hash(into hasher: inout Hasher) {
+    hasher.combine(self.episodeDataURL?.absoluteString ?? "")
   }
 }
