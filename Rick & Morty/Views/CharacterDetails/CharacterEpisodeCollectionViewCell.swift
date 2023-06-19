@@ -37,9 +37,7 @@ class CharacterEpisodeCollectionViewCell: UICollectionViewCell {
   // MARK: - Init's
   override init(frame: CGRect) {
     super.init(frame: frame)
-    contentView.backgroundColor = .tertiarySystemBackground
-    contentView.layer.borderWidth = 2
-    contentView.layer.borderColor = UIColor.systemBlue.cgColor
+    setupLayer()
     contentView.addSubviews(seasonLabel, nameLabel, airDateLabel)
     setupConstraints()
   }
@@ -63,6 +61,12 @@ class CharacterEpisodeCollectionViewCell: UICollectionViewCell {
       self?.airDateLabel.text = "Aired on " + data.air_date
     }
     viewModel.fetchEpisode()
+    contentView.layer.borderColor = viewModel.borderColor.cgColor
+  }
+
+  private func setupLayer() {
+    contentView.backgroundColor = .tertiarySystemBackground
+    contentView.layer.borderWidth = 2
   }
 
   private func setupConstraints() {

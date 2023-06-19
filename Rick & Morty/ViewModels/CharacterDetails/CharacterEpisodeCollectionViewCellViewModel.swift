@@ -5,7 +5,7 @@
 //  Created by Николай Никитин on 25.05.2023.
 //
 
-import Foundation
+import UIKit
 
 protocol EpisodeDataRender {
   var episode: String { get }
@@ -25,10 +25,12 @@ final class CharacterEpisodeCollectionViewCellViewModel: Hashable, Equatable {
     }
   }
   private var dataBlock: ((EpisodeDataRender) -> Void)?
+  public let borderColor: UIColor
 
   // MARK: - Init
-  init(episodeDataURL: URL?) {
+  init(episodeDataURL: URL?, borderColor: UIColor = .systemBlue) {
     self.episodeDataURL = episodeDataURL
+    self.borderColor = borderColor
   }
 
   // MARK: - Methods
