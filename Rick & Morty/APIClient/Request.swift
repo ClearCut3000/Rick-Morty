@@ -106,4 +106,5 @@ final class Request {
 // MARK: - Extension
 extension Request {
   static let listCharactersRequest = Request(endpoint: .character)
+  static let listEpisodeRequest = Request(endpoint: .eposode)
 }

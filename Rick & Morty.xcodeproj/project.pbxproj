@@ -49,6 +49,7 @@
 		36C1AE352A1FF03D005E67AF /* CharacterEpisodeCollectionViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C1AE342A1FF03D005E67AF /* CharacterEpisodeCollectionViewCellViewModel.swift */; };
 		36F32BA72A3E4E5C00D525F3 /* EpisodeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F32BA62A3E4E5C00D525F3 /* EpisodeListView.swift */; };
 		36F32BA92A3F9AA600D525F3 /* EpisodeListViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F32BA82A3F9AA600D525F3 /* EpisodeListViewViewModel.swift */; };
+		36F32BAB2A40C1A700D525F3 /* GetAllEpisodesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F32BAA2A40C1A700D525F3 /* GetAllEpisodesResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,6 +97,7 @@
 		36C1AE342A1FF03D005E67AF /* CharacterEpisodeCollectionViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterEpisodeCollectionViewCellViewModel.swift; sourceTree = "<group>"; };
 		36F32BA62A3E4E5C00D525F3 /* EpisodeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeListView.swift; sourceTree = "<group>"; };
 		36F32BA82A3F9AA600D525F3 /* EpisodeListViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeListViewViewModel.swift; sourceTree = "<group>"; };
+		36F32BAA2A40C1A700D525F3 /* GetAllEpisodesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAllEpisodesResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				366CC3392A09828D007BACE1 /* GetAllCharactersResponse.swift */,
+				36F32BAA2A40C1A700D525F3 /* GetAllEpisodesResponse.swift */,
 			);
 			name = ResponseTypes;
 			sourceTree = "<group>";
@@ -392,6 +395,7 @@
 				36853FB12A003C0A00D8F79E /* Character.swift in Sources */,
 				36C1AE352A1FF03D005E67AF /* CharacterEpisodeCollectionViewCellViewModel.swift in Sources */,
 				36853FAF2A003BC700D8F79E /* Location.swift in Sources */,
+				36F32BAB2A40C1A700D525F3 /* GetAllEpisodesResponse.swift in Sources */,
 				366CC3482A156430007BACE1 /* CharacterDetailViewController.swift in Sources */,
 				366CC3452A10191B007BACE1 /* CharacterCollectionViewCellViewModel.swift in Sources */,
 				36853FBE2A01A5AA00D8F79E /* Service.swift in Sources */,
