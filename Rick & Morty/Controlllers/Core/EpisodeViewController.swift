@@ -16,12 +16,24 @@ class EpisodeViewController: UIViewController {
     super.viewDidLoad()
     view.backgroundColor = .systemBackground
     title = "Episodes"
+    addSearchButtton()
     NSLayoutConstraint.activate([
       episodeListView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
       episodeListView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
       episodeListView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
       episodeListView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
     ])
+  }
+
+  // MARK: - Methods
+  private func addSearchButtton() {
+    navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search,
+                                                        target: self,
+                                                        action: #selector(didTapSearch))
+  }
+
+  @objc private func didTapSearch() {
+
   }
 }
 

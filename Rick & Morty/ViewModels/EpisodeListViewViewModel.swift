@@ -25,10 +25,25 @@ final class EpisodeListViewViewModel: NSObject {
     return apiInfo?.next != nil
   }
 
+  private let borderColors: [UIColor] = [
+    .systemRed,
+    .systemOrange,
+    .systemYellow,
+    .systemGreen,
+    .systemBlue,
+    .systemPurple,
+    .systemCyan,
+    .systemMint,
+    .systemTeal
+  ]
+
   private var episodes: [Episode] = [] {
     didSet {
       episodes.forEach { episode in
-        let viewModel = CharacterEpisodeCollectionViewCellViewModel(episodeDataURL: URL(string: episode.url))
+        let viewModel = CharacterEpisodeCollectionViewCellViewModel(
+          episodeDataURL: URL(string: episode.url),
+          borderColor: borderColors.randomElement() ?? .systemIndigo
+        )
         if !cellViewModels.contains(viewModel) {
           cellViewModels.append(viewModel)
         }

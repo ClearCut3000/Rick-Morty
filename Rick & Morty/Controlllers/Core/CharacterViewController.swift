@@ -13,10 +13,28 @@ final class CharacterViewController: UIViewController {
 
   // MARK: - View Lifecycle
   override func viewDidLoad() {
-    characterListView.delegate = self
     super.viewDidLoad()
     view.backgroundColor = .systemBackground
     title = "Characters"
+    setupView()
+    addSearchButtton()
+  }
+
+  // MARK: - Methods
+  private func addSearchButtton() {
+    navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search,
+                                                        target: self,
+                                                        action: #selector(didTapSearch))
+  }
+
+  @objc private func didTapSearch() {
+    let viewController = SearchViewController(config: SearchViewController.Config(type: .character))
+    viewController.navigationItem.largeTitleDisplayMode = .never
+    navigationController?.pushViewController(viewController, animated: true)
+  }
+
+  private func setupView() {
+    characterListView.delegate = self
     NSLayoutConstraint.activate([
       characterListView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
       characterListView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),

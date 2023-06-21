@@ -12,6 +12,8 @@ final class EpisodeDetailView: UIView {
   // MARK: - Init's
   override init(frame: CGRect) {
     super.init(frame: frame)
+    translatesAutoresizingMaskIntoConstraints = false
+    backgroundColor = .systemBackground
   }
 
   required init?(coder: NSCoder) {

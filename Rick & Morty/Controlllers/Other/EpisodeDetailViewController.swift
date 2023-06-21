@@ -12,6 +12,8 @@ final class EpisodeDetailViewController: UIViewController {
   // MARK: - Properties
   private let viewModel: EpisodeDetailViewViewModel
 
+  private let detailView = EpisodeDetailView()
+
   // MARK: - Init's
   init(url: URL?) {
     self.viewModel = .init(endpointURL: url)
@@ -25,6 +27,27 @@ final class EpisodeDetailViewController: UIViewController {
   // MARK: - View Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
+    view.addSubview(detailView)
+    addConstraints()
+    title = "Episode"
+    navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(didTapShare))
   }
 
+  // MARK: - Methods
+  private func addConstraints() {
+    NSLayoutConstraint.activate([
+      detailView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+      detailView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+      detailView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
+      detailView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor)
+    ])
+  }
+
+  private func addSeearchButton() {
+    
+  }
+
+  @objc private func didTapShare() {
+
+  }
 }
