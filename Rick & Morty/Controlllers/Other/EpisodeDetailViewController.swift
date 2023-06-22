@@ -28,9 +28,11 @@ final class EpisodeDetailViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     view.addSubview(detailView)
+    viewModel.delegate = self
     addConstraints()
     title = "Episode"
     navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(didTapShare))
+    viewModel.fetchEpisodeData()
   }
 
   // MARK: - Methods
@@ -49,5 +51,12 @@ final class EpisodeDetailViewController: UIViewController {
 
   @objc private func didTapShare() {
 
+  }
+}
+
+// MARK: - EpisodeDetailViewViewModelDelegate Extension
+extension EpisodeDetailViewController: EpisodeDetailViewViewModelDelegate {
+  func didFetchEpisodeDetails() {
+    detailView.configure(with: viewModel)
   }
 }
