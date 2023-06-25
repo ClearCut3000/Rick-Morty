@@ -14,14 +14,21 @@ protocol EpisodeDetailViewViewModelDelegate: AnyObject {
 final class EpisodeDetailViewViewModel {
 
   // MARK: - Properties
-  private let endpointURL: URL?
-
   public weak var delegate: EpisodeDetailViewViewModelDelegate?
+
+  public private(set) var sections: [SectionType] = []
+
+  private let endpointURL: URL?
   
   private var dataTuple: (Episode, [Character])? {
     didSet {
       delegate?.didFetchEpisodeDetails()
     }
+  }
+
+  enum SectionType {
+    case information(viewModel: [EpisodeInfoCollectionViewCellViewModel])
+    case characters(viewModel: [CharacterCollectionViewCellViewModel] )
   }
 
   // MARK: - Init
