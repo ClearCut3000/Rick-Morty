@@ -16,12 +16,13 @@ final class EpisodeDetailViewViewModel {
   // MARK: - Properties
   public weak var delegate: EpisodeDetailViewViewModelDelegate?
 
-  public private(set) var sections: [SectionType] = []
+  public private(set) var cellViewModels: [SectionType] = []
 
   private let endpointURL: URL?
   
-  private var dataTuple: (Episode, [Character])? {
+  private var dataTuple: (episode: Episode, characters: [Character])? {
     didSet {
+      createCellViewModels()
       delegate?.didFetchEpisodeDetails()
     }
   }
@@ -75,7 +76,26 @@ final class EpisodeDetailViewViewModel {
       }
     }
     group.notify(queue: .main) {
-      self.dataTuple = (  episode, characters )
+      self.dataTuple = ( episode: episode, characters: characters )
     }
+  }
+
+  private func createCellViewModels() {
+    guard let dataTuple else { return }
+    let episode = dataTuple.episode
+    let characters = dataTuple.characters
+    cellViewModels = [
+      .information(viewModel: [
+        .init(title: "Episode Name", value: episode.name),
+        .init(title: "Air Date", value: episode.air_date),
+        .init(title: "Episode", value: episode.episode),
+        .init(title: "Created", value: episode.created)
+      ]),
+      .characters(viewModel: characters.compactMap({ character in
+        return CharacterCollectionViewCellViewModel(characterName:character.name,
+                                                    characterStatus: character.status,
+                                                    characterImageURL: URL(string: character.image))
+      }))
+    ]
   }
 } 
