@@ -103,8 +103,26 @@ extension EpisodeDetailView: UICollectionViewDelegate, UICollectionViewDataSourc
   }
 
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-    return cell
+    guard let sections = viewModel?.cellViewModels else { fatalError("No ViewModel!") }
+    let sectionType = sections[indexPath.section]
+    switch sectionType {
+    case .information(viewModel: let viewModels):
+      let cellViewModel = viewModels[indexPath.row]
+      guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EpisodeInfoCollectionViewCell.identifier,
+                                                    for: indexPath) as? EpisodeInfoCollectionViewCell else {
+        fatalError()
+      }
+      cell.configure(with: cellViewModel)
+      return cell
+    case .characters(viewModel: let viewModels):
+      let cellViewModel = viewModels[indexPath.row]
+      guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CharacterCollectionViewCell.identifier,
+                                                    for: indexPath) as? CharacterCollectionViewCell else {
+        fatalError()
+      }
+      cell.configure(with: cellViewModel)
+      return cell
+    }
   }
 
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -115,8 +133,20 @@ extension EpisodeDetailView: UICollectionViewDelegate, UICollectionViewDataSourc
 // MARK: - Layout Extension
 extension EpisodeDetailView {
   private func layout(for section: Int) -> NSCollectionLayoutSection {
-    let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1),
-                                                        heightDimension: .fractionalHeight(1)))
+    guard let sections = viewModel?.cellViewModels else {
+      return createInfoLayout()
+    }
+    switch sections[section] {
+    case .information:
+      return createInfoLayout()
+    case .characters:
+      return createCharacterLayout()
+    }
+  }
+
+  func createInfoLayout() -> NSCollectionLayoutSection {
+    let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(0.5),
+                                                        heightDimension: .fractionalHeight(1.0)))
     item.contentInsets = NSDirectionalEdgeInsets(top: 10,
                                                  leading: 10,
                                                  bottom: 10,
@@ -124,6 +154,20 @@ extension EpisodeDetailView {
     let group = NSCollectionLayoutGroup.vertical(layoutSize: .init(widthDimension: .fractionalWidth(1),
                                                                    heightDimension: .absolute(100)),
                                                  subitems: [item])
+    let section = NSCollectionLayoutSection(group: group)
+    return section
+  }
+
+  func createCharacterLayout() -> NSCollectionLayoutSection {
+    let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(0.5),
+                                                        heightDimension: .fractionalHeight(1)))
+    item.contentInsets = NSDirectionalEdgeInsets(top: 5,
+                                                 leading: 10,
+                                                 bottom: 5,
+                                                 trailing: 10)
+    let group = NSCollectionLayoutGroup.vertical(layoutSize: .init(widthDimension: .fractionalWidth(0.5),
+                                                                   heightDimension: .absolute(240)),
+                                                 subitems: [item, item])
     let section = NSCollectionLayoutSection(group: group)
     return section
   }
