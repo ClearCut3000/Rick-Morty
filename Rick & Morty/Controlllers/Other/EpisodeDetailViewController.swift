@@ -28,6 +28,7 @@ final class EpisodeDetailViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     view.addSubview(detailView)
+    detailView.delegate = self
     viewModel.delegate = self
     addConstraints()
     title = "Episode"
@@ -58,5 +59,15 @@ final class EpisodeDetailViewController: UIViewController {
 extension EpisodeDetailViewController: EpisodeDetailViewViewModelDelegate {
   func didFetchEpisodeDetails() {
     detailView.configure(with: viewModel)
+  }
+}
+
+// MARK: - EpisodeDetailViewDelegate Protocol Extension
+extension EpisodeDetailViewController: EpisodeDetailViewDelegate {
+  func episodeDetailViewDelegate(_ detailView: EpisodeDetailView, didSelect character: Character) {
+    let viewController = CharacterDetailViewController(viewModel: .init(character: character))
+    viewController.title = character.name
+    viewController.navigationItem.largeTitleDisplayMode = .never
+    navigationController?.pushViewController(viewController, animated: true)
   }
 }

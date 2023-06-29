@@ -52,6 +52,13 @@ final class EpisodeDetailViewViewModel {
     }
   }
 
+  public func character(at index: Int) -> Character? {
+    guard let dataTuple = dataTuple else {
+      return nil
+    }
+    return dataTuple.characters[index]
+  }
+
   private func fetchRelatedCharacters(episode: Episode) {
     let requests = episode.characters.compactMap {
       return URL(string: $0)
@@ -84,12 +91,16 @@ final class EpisodeDetailViewViewModel {
     guard let dataTuple else { return }
     let episode = dataTuple.episode
     let characters = dataTuple.characters
+    var createdString = episode.created
+    if let createdDate = CharacterInfoCollectionViewCellViewModel.dateFormatter.date(from: episode.created) {
+      createdString = CharacterInfoCollectionViewCellViewModel.shortDateFormatter.string(from: createdDate)
+    }
     cellViewModels = [
       .information(viewModel: [
         .init(title: "Episode Name", value: episode.name),
         .init(title: "Air Date", value: episode.air_date),
         .init(title: "Episode", value: episode.episode),
-        .init(title: "Created", value: episode.created)
+        .init(title: "Created", value: createdString)
       ]),
       .characters(viewModel: characters.compactMap({ character in
         return CharacterCollectionViewCellViewModel(characterName:character.name,
