@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum SettingsOption {
+enum SettingsOption: CaseIterable {
   case rateApp
   case contactUs
   case terms
@@ -35,22 +35,41 @@ enum SettingsOption {
     }
   }
 
+  var iconContainerCollor: UIColor {
+    switch self {
+    case .rateApp:
+      return .systemRed
+    case .contactUs:
+      return .systemBlue
+    case .terms:
+      return .systemCyan
+    case .privacy:
+      return .systemMint
+    case .apiReference:
+      return .systemPink
+    case .viewSeries:
+      return .systemBrown
+    case .viewCode:
+      return .systemOrange
+    }
+  }
+
   var iconImage: UIImage? {
     switch self {
     case .rateApp:
-      return UIImage(systemName: "")
+      return UIImage(systemName: "star.fill")
     case .contactUs:
-      return UIImage(systemName: "")
+      return UIImage(systemName: "paperplane")
     case .terms:
-      return UIImage(systemName: "")
+      return UIImage(systemName: "doc")
     case .privacy:
-      return UIImage(systemName: "")
+      return UIImage(systemName: "lock")
     case .apiReference:
-      return UIImage(systemName: "")
+      return UIImage(systemName: "list.clipboard")
     case .viewSeries:
-      return UIImage(systemName: "")
+      return UIImage(systemName: "tv.fill")
     case .viewCode:
-      return UIImage(systemName: "")
+      return UIImage(systemName: "hammer")
     }
   }
 }

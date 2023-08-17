@@ -7,16 +7,26 @@
 
 import UIKit
 
-struct SettingsCellViewModel {
+struct SettingsCellViewModel: Identifiable, Hashable {
+
+  // MARK: - Properties
+  let id = UUID()
+
+  private let type: SettingsOption
 
   public var image: UIImage? {
     return type.iconImage
   }
+
   public var title: String {
     return type.displayTitle
   }
-  private let type: SettingsOption
 
+  public var iconContainerCollor: UIColor {
+    return type.iconContainerCollor
+  }
+
+  // MARK: - Init
   init(type: SettingsOption) {
     self.type = type
   }

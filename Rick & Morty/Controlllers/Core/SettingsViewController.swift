@@ -9,6 +9,11 @@ import UIKit
 
 final class SettingsViewController: UIViewController {
 
+  // MARK: - Properties
+  private let viewModel = SettingsViewViewModel(cellViewModel: SettingsOption.allCases.compactMap({
+    return SettingsCellViewModel(type: $0)
+  }))
+
   // MARK: - View Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()

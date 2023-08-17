@@ -8,6 +8,6 @@
 import Foundation
 
 struct SettingsViewViewModel {
-  let cellViewModell: [SettingsCellViewModel]
+  let cellViewModel: [SettingsCellViewModel]
 
 }
