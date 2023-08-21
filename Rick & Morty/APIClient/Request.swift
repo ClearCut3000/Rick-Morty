@@ -27,7 +27,6 @@ final class Request {
     string += "/"
     string += endpoint.rawValue
     if !pathComponents.isEmpty {
-      string += "/"
       pathComponents.forEach { string += "/\($0)" }
     }
     if !queryParameters.isEmpty {
@@ -65,7 +64,7 @@ final class Request {
   /// - Parameter url: URL to parse
   convenience init?(url: URL) {
     let string = url.absoluteString
-    if string.contains(Constants.baseURL) {
+    if !string.contains(Constants.baseURL) {
       return nil
     }
     let trimmed = string.replacingOccurrences(of: Constants.baseURL + "/", with: "")

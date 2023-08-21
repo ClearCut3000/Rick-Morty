@@ -35,6 +35,7 @@ final class CharacterViewController: UIViewController {
 
   private func setupView() {
     characterListView.delegate = self
+    view.addSubview(characterListView)
     NSLayoutConstraint.activate([
       characterListView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
       characterListView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
@@ -48,7 +49,7 @@ final class CharacterViewController: UIViewController {
 extension CharacterViewController: CharacterListViewDelegate {
   func rmCharacterListView(_ characterListView: CharacterListView, didSelectCharacter character: Character) {
     let viewModel = CharacterDetailViewViewModel(character: character)
-    let detailViewController = CharacterDetailViewController(viewModel:  viewModel)
+    let detailViewController = CharacterDetailViewController(viewModel: viewModel)
     detailViewController.navigationItem.largeTitleDisplayMode = .never
     navigationController?.pushViewController(detailViewController, animated: true)
   }

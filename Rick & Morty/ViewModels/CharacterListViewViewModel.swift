@@ -40,7 +40,7 @@ final class CharacterListViewViewModel: NSObject {
 
   private var cellViewModels: [CharacterCollectionViewCellViewModel] = []
 
-  private var apiInfo: Info? = nil
+  private var apiInfo: GetAllCharactersResponse.Info? = nil
 
 
   // MARK: - ViewModel Methods
@@ -67,7 +67,10 @@ final class CharacterListViewViewModel: NSObject {
   public func fetchAdditionalCharacters(url: URL) {
     guard !isLoadingMoreCharacters else { return }
     isLoadingMoreCharacters = true
-    guard let request = Request(url: url) else { return }
+    guard let request = Request(url: url) else {
+      isLoadingMoreCharacters = false
+      return
+    }
     Service.shared.execute(request,
                            expecting: GetAllCharactersResponse.self) { [weak self] result in
       guard let self else { return }

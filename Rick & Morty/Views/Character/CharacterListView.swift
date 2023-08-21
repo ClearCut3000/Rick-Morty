@@ -17,13 +17,16 @@ final class CharacterListView: UIView {
 
   // MARK: - Properties
   public weak var delegate: CharacterListViewDelegate?
+
   private let viewModel = CharacterListViewViewModel()
+  
   private let spinner: UIActivityIndicatorView = {
     let spinner = UIActivityIndicatorView(style: .large)
     spinner.hidesWhenStopped = true
     spinner.translatesAutoresizingMaskIntoConstraints = false
     return spinner
   }()
+
   private let collectionView: UICollectionView = {
     let layout = UICollectionViewFlowLayout()
     layout.scrollDirection = .vertical
@@ -32,7 +35,8 @@ final class CharacterListView: UIView {
     collectionView.isHidden = true
     collectionView.alpha = 0
     collectionView.translatesAutoresizingMaskIntoConstraints = false
-    collectionView.register(CharacterCollectionViewCell.self, forCellWithReuseIdentifier: CharacterCollectionViewCell.identifier)
+    collectionView.register(CharacterCollectionViewCell.self,
+                            forCellWithReuseIdentifier: CharacterCollectionViewCell.identifier)
     collectionView.register(FooterLoadingCollectionReusableView.self,
                             forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
                             withReuseIdentifier: FooterLoadingCollectionReusableView.identtifier)

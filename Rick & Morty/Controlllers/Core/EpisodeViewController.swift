@@ -12,17 +12,11 @@ class EpisodeViewController: UIViewController {
 
   // MARK: - View Lifecycle
   override func viewDidLoad() {
-    episodeListView.delegate = self
     super.viewDidLoad()
     view.backgroundColor = .systemBackground
     title = "Episodes"
+    setupView()
     addSearchButtton()
-    NSLayoutConstraint.activate([
-      episodeListView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-      episodeListView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
-      episodeListView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
-      episodeListView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
-    ])
   }
 
   // MARK: - Methods
@@ -34,6 +28,17 @@ class EpisodeViewController: UIViewController {
 
   @objc private func didTapSearch() {
 
+  }
+
+  private func setupView() {
+    episodeListView.delegate = self
+    view.addSubview(episodeListView)
+    NSLayoutConstraint.activate([
+      episodeListView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+      episodeListView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
+      episodeListView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
+      episodeListView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+    ])
   }
 }
 

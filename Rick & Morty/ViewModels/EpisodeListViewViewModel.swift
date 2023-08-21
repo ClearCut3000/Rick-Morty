@@ -140,7 +140,7 @@ extension EpisodeListViewViewModel: UICollectionViewDelegate {
           let footer = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
                                                                        withReuseIdentifier: FooterLoadingCollectionReusableView.identtifier,
                                                                        for: indexPath) as? FooterLoadingCollectionReusableView else {
-      fatalError("Unsupported !")
+      fatalError("Unsupported!")
     }
     footer.startAnimating()
     return footer
