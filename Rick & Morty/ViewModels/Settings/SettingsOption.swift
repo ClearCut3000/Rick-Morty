@@ -16,6 +16,25 @@ enum SettingsOption: CaseIterable {
   case viewSeries
   case viewCode
 
+  var targetURL: URL? {
+    switch self {
+    case .rateApp:
+      return nil
+    case .contactUs:
+      return URL(string: "https://github.com/ClearCut3000")
+    case .terms:
+      return URL(string: "https://github.com/ClearCut3000")
+    case .privacy:
+      return URL(string: "https://github.com/ClearCut3000")
+    case .apiReference:
+      return URL(string: "https://rickandmortyapi.com/documentation")
+    case .viewSeries:
+      return URL(string: "https://www.youtube.com/watch?v=fTGA8cjbf5Y")
+    case .viewCode:
+      return URL(string: "https://github.com/ClearCut3000/Rick-Morty")
+    }
+  }
+
   var displayTitle: String {
     switch self {
     case .rateApp:

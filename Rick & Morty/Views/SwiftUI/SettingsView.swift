@@ -19,18 +19,27 @@ struct SettingsView: View {
 
   // MARK: - View Body
   var body: some View {
-    List(viewModel.cellViewModel) { model in
+    List(viewModel.cellViewModel) { viewModel in
       HStack {
-        if let image = model.image {
+        if let image = viewModel.image {
           Image(uiImage: image)
             .resizable()
+            .renderingMode(.template)
+            .foregroundColor(Color.white)
             .aspectRatio(contentMode: .fit)
             .frame(width: 30, height: 30)
-            .padding()
+            .padding(8)
+            .background(Color(uiColor: viewModel.iconContainerCollor))
+            .cornerRadius(6)
         }
-        Text(model.title)
+        Text(viewModel.title)
+          .padding(.leading, 8)
+        Spacer()
       }
-      .padding()
+      .padding(.bottom, 3)
+      .onTapGesture {
+        viewModel.onTapHandler(viewModel.type)
+      }
     }
   }
 }
@@ -38,7 +47,7 @@ struct SettingsView: View {
 struct SettingsView_Previews: PreviewProvider {
   static var previews: some View {
     SettingsView(viewModel: .init(cellViewModel: SettingsOption.allCases.compactMap({
-      SettingsCellViewModel(type: $0)
+      SettingsCellViewModel(type: $0) { _ in }
     })))
   }
 }
