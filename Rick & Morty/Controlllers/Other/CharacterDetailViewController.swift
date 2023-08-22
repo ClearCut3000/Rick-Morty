@@ -79,9 +79,9 @@ extension CharacterDetailViewController: UICollectionViewDataSource {
     let sectionType = viewModel.sections[indexPath.section]
     switch sectionType {
     case .photo(viewModel: let viewModel):
-      guard let cell = collectionView
-        .dequeueReusableCell(withReuseIdentifier: CharacterPhotoCollectionViewCell.identifier,
-                             for: indexPath) as? CharacterPhotoCollectionViewCell else {
+      guard let cell = collectionView.dequeueReusableCell(
+        withReuseIdentifier: CharacterPhotoCollectionViewCell.identifier,
+        for: indexPath) as? CharacterPhotoCollectionViewCell else {
         fatalError()
       }
       cell.configure(with: viewModel)

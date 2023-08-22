@@ -18,19 +18,27 @@ struct SettingsView: View {
   }
 
   // MARK: - View Body
-    var body: some View {
-      ScrollView(.vertical) {
-        List(viewModel.cellViewModel) { model in
-          Text(model.title)
+  var body: some View {
+    List(viewModel.cellViewModel) { model in
+      HStack {
+        if let image = model.image {
+          Image(uiImage: image)
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .frame(width: 30, height: 30)
+            .padding()
         }
+        Text(model.title)
       }
+      .padding()
     }
+  }
 }
 
 struct SettingsView_Previews: PreviewProvider {
-    static var previews: some View {
-      SettingsView(viewModel: .init(cellViewModel: SettingsOption.allCases.compactMap({
-        SettingsCellViewModel(type: $0)
-      })))
-    }
+  static var previews: some View {
+    SettingsView(viewModel: .init(cellViewModel: SettingsOption.allCases.compactMap({
+      SettingsCellViewModel(type: $0)
+    })))
+  }
 }

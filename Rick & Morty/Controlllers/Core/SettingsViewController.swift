@@ -11,7 +11,10 @@ import UIKit
 final class SettingsViewController: UIViewController {
 
   // MARK: - Properties
-  private let settingsView = UIHostingController(rootView: SettingsView(viewModel: SettingsViewViewModel(cellViewModel: SettingsOption.allCases.compactMap({
+  private let settingsSUIView = UIHostingController(rootView:
+                                                  SettingsView(viewModel:
+                                                                          SettingsViewViewModel(cellViewModel:
+                                                                                                  SettingsOption.allCases.compactMap({
     return SettingsCellViewModel(type: $0)
   }))))
 
@@ -25,6 +28,15 @@ final class SettingsViewController: UIViewController {
 
   // MARK: - Methods
   private func addSUIConttroller() {
-
+    addChild(settingsSUIView)
+    settingsSUIView.didMove(toParent: self)
+    view.addSubview(settingsSUIView.view)
+    settingsSUIView.view.translatesAutoresizingMaskIntoConstraints = false
+    NSLayoutConstraint.activate([
+      settingsSUIView.view.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+      settingsSUIView.view.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+      settingsSUIView.view.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
+      settingsSUIView.view.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor)
+    ])
   }
 }

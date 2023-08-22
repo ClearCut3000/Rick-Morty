@@ -88,11 +88,11 @@ final class CharacterDetailViewViewModel {
     let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0),
                                                                          heightDimension: .fractionalHeight(1.0)))
     item.contentInsets = NSDirectionalEdgeInsets(top: 10,
-                                                 leading: 10,
+                                                 leading: 5,
                                                  bottom: 10,
-                                                 trailing: 10)
+                                                 trailing: 8)
     let group = NSCollectionLayoutGroup.horizontal(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.8),
-                                                                                      heightDimension: .absolute(0.5)),
+                                                                                      heightDimension: .absolute(150)),
                                                    subitems: [item])
     let section = NSCollectionLayoutSection(group: group)
     section.orthogonalScrollingBehavior = .groupPaging

@@ -161,7 +161,7 @@ extension EpisodeDetailView {
   }
 
   func createInfoLayout() -> NSCollectionLayoutSection {
-    let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(0.5),
+    let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1.0),
                                                         heightDimension: .fractionalHeight(1.0)))
     item.contentInsets = NSDirectionalEdgeInsets(top: 10,
                                                  leading: 10,
@@ -176,13 +176,13 @@ extension EpisodeDetailView {
 
   func createCharacterLayout() -> NSCollectionLayoutSection {
     let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(0.5),
-                                                        heightDimension: .fractionalHeight(1)))
+                                                        heightDimension: .fractionalHeight(1.0)))
     item.contentInsets = NSDirectionalEdgeInsets(top: 5,
                                                  leading: 10,
                                                  bottom: 5,
                                                  trailing: 10)
-    let group = NSCollectionLayoutGroup.vertical(layoutSize: .init(widthDimension: .fractionalWidth(0.5),
-                                                                   heightDimension: .absolute(240)),
+    let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(1.0),
+                                                                   heightDimension: .absolute(260)),
                                                  subitems: [item, item])
     let section = NSCollectionLayoutSection(group: group)
     return section

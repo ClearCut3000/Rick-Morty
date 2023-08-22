@@ -35,8 +35,9 @@ final class CharacterEpisodeCollectionViewCellViewModel: Hashable, Equatable {
 
   // MARK: - Methods
   public func registedForData(_ block: @escaping (EpisodeDataRender) -> Void ) {
-
+    self.dataBlock = block
   }
+
   public func fetchEpisode() {
     guard !isFetching else {
       if let model = episode { dataBlock?(model) }

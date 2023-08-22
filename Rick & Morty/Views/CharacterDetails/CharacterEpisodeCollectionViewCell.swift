@@ -37,6 +37,7 @@ class CharacterEpisodeCollectionViewCell: UICollectionViewCell {
   // MARK: - Init's
   override init(frame: CGRect) {
     super.init(frame: frame)
+    contentView.backgroundColor = .tertiarySystemBackground
     setupLayer()
     contentView.addSubviews(seasonLabel, nameLabel, airDateLabel)
     setupConstraints()

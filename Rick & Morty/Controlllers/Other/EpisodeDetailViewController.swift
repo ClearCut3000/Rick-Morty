@@ -46,7 +46,7 @@ final class EpisodeDetailViewController: UIViewController {
     ])
   }
 
-  private func addSeearchButton() {
+  private func addSearchButton() {
     
   }
 

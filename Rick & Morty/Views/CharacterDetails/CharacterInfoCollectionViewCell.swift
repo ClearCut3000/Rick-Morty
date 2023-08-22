@@ -18,7 +18,7 @@ class CharacterInfoCollectionViewCell: UICollectionViewCell {
     label.numberOfLines = 0
     label.translatesAutoresizingMaskIntoConstraints = false
     label.text = "Earth"
-    label.font = .systemFont(ofSize: 22, weight: .light)
+    label.font = .systemFont(ofSize: 20, weight: .light)
     return label
   }()
 
@@ -27,7 +27,7 @@ class CharacterInfoCollectionViewCell: UICollectionViewCell {
     label.translatesAutoresizingMaskIntoConstraints = false
     label.text = "Location"
     label.textAlignment = .center
-    label.font = .systemFont(ofSize: 20, weight: .medium)
+    label.font = .systemFont(ofSize: 22, weight: .medium)
     return label
   }()
 
@@ -92,12 +92,12 @@ class CharacterInfoCollectionViewCell: UICollectionViewCell {
       titleLabel.topAnchor.constraint(equalTo: titleContainerView.topAnchor),
       titleLabel.bottomAnchor.constraint(equalTo: titleContainerView.bottomAnchor),
 
-      iconImageView.heightAnchor.constraint(equalToConstant: 32),
-      iconImageView.widthAnchor.constraint(equalToConstant: 32),
-      iconImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 38),
+      iconImageView.heightAnchor.constraint(equalToConstant: 28),
+      iconImageView.widthAnchor.constraint(equalToConstant: 28),
+      iconImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 32),
       iconImageView.leftAnchor.constraint(equalTo: contentView.leftAnchor, constant: 20),
 
-      valueLabel.leftAnchor.constraint(equalTo: iconImageView.rightAnchor),
+      valueLabel.leftAnchor.constraint(equalTo: iconImageView.rightAnchor, constant: 10),
       valueLabel.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -10),
       valueLabel.topAnchor.constraint(equalTo: contentView.topAnchor),
       valueLabel.bottomAnchor.constraint(equalTo: titleContainerView.topAnchor)
