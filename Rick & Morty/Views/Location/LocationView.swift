@@ -9,7 +9,19 @@ import UIKit
 
 final class LocationView: UIView {
 
-  // MARK: - Properties
+  // MARK: - Properties:
+  private var viewModel: LocationViewViewModel? {
+    didSet {
+      spinner.stopAnimating()
+      table.isHidden = false
+      table.reloadData()
+      UIView.animate(withDuration: 0.3) {
+        self.table.alpha = 1
+      }
+    }
+  }
+
+  // MARK: - Subview's
   private let table: UITableView = {
     let table = UITableView()
     table.translatesAutoresizingMaskIntoConstraints = false
@@ -27,7 +39,7 @@ final class LocationView: UIView {
     return spinner
   }()
 
-// MARK: - Init's
+  // MARK: - Init's
   override init(frame: CGRect) {
     super.init(frame: frame)
     backgroundColor = .systemBackground
@@ -41,7 +53,7 @@ final class LocationView: UIView {
     fatalError("init(coder:) has not been implemented")
   }
 
-// MARK: - Methods
+  // MARK: - Methods
   private func addConstraints() {
     NSLayoutConstraint.activate([
       spinner.heightAnchor.constraint(equalToConstant: 100),
@@ -54,5 +66,9 @@ final class LocationView: UIView {
       table.rightAnchor.constraint(equalTo: rightAnchor),
       table.bottomAnchor.constraint(equalTo: bottomAnchor),
     ])
+  }
+
+  public func configure(with viewModel: LocationViewViewModel) {
+    self.viewModel = viewModel
   }
 }

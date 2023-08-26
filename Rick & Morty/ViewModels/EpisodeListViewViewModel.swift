@@ -59,7 +59,7 @@ final class EpisodeListViewViewModel: NSObject {
   // MARK: - ViewModel Methods
   /// Sets initial amount of episodes(20)
   public func fetchEpisodes() {
-    Service.shared.execute(.listEpisodeRequest,
+    Service.shared.execute(.listEpisodesRequest,
                            expecting: GetAllEpisodesResponse.self) { [weak self] result in
       switch result {
       case .success(let responseModel):

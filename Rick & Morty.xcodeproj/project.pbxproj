@@ -12,6 +12,7 @@
 		360BC6692A521ACB0000ED69 /* SettingsOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360BC6682A521ACB0000ED69 /* SettingsOption.swift */; };
 		3628B2142A390E2A00BF0B1C /* EpisodeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3628B2132A390E2A00BF0B1C /* EpisodeDetailViewController.swift */; };
 		3633CF492A9A9A47004A329D /* LocationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3633CF482A9A9A47004A329D /* LocationView.swift */; };
+		3633CF4B2A9A9D86004A329D /* LocationViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3633CF4A2A9A9D86004A329D /* LocationViewViewModel.swift */; };
 		364DA2862A439A0D004B8594 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364DA2852A439A0D004B8594 /* SearchViewController.swift */; };
 		364F1FC02A03016800E90711 /* Origin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364F1FBF2A03016800E90711 /* Origin.swift */; };
 		364F1FC22A0301D900E90711 /* SingleLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364F1FC12A0301D900E90711 /* SingleLocation.swift */; };
@@ -66,6 +67,7 @@
 		360BC6682A521ACB0000ED69 /* SettingsOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsOption.swift; sourceTree = "<group>"; };
 		3628B2132A390E2A00BF0B1C /* EpisodeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeDetailViewController.swift; sourceTree = "<group>"; };
 		3633CF482A9A9A47004A329D /* LocationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationView.swift; sourceTree = "<group>"; };
+		3633CF4A2A9A9D86004A329D /* LocationViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationViewViewModel.swift; sourceTree = "<group>"; };
 		364DA2852A439A0D004B8594 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		364F1FBF2A03016800E90711 /* Origin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Origin.swift; sourceTree = "<group>"; };
 		364F1FC12A0301D900E90711 /* SingleLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleLocation.swift; sourceTree = "<group>"; };
@@ -267,6 +269,7 @@
 				366CC3442A10191B007BACE1 /* CharacterCollectionViewCellViewModel.swift */,
 				36C1AE2F2A1FEFE1005E67AF /* CharacterDetails */,
 				36F32BA82A3F9AA600D525F3 /* EpisodeListViewViewModel.swift */,
+				3633CF4A2A9A9D86004A329D /* LocationViewViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -478,6 +481,7 @@
 				364F1FC02A03016800E90711 /* Origin.swift in Sources */,
 				366CC3502A1AC680007BACE1 /* ImageLoader.swift in Sources */,
 				360BC6652A5219900000ED69 /* SettingsViewViewModel.swift in Sources */,
+				3633CF4B2A9A9D86004A329D /* LocationViewViewModel.swift in Sources */,
 				3628B2142A390E2A00BF0B1C /* EpisodeDetailViewController.swift in Sources */,
 				36E308D32A479DD600D26C52 /* EpisodeInfoCollectionViewCell.swift in Sources */,
 				360BC6692A521ACB0000ED69 /* SettingsOption.swift in Sources */,
