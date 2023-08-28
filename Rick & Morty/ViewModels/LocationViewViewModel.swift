@@ -7,14 +7,20 @@
 
 import Foundation
 
+protocol LocationViewViewModelDelegate: AnyObject {
+  func didFetchInitialLocation()
+}
+
 final class LocationViewViewModel {
 
   // MARK: - Properties
   private var locations: [Location] = []
+  private var apiInfo: GetAllLocationsResponse.Info?
   private var cellViewModels: [String] = []
   private var hasMoreResults: Bool {
     return false
   }
+  weak var delegate: LocationViewViewModelDelegate?
 
   // MARK: - Init
   init() {
@@ -23,10 +29,15 @@ final class LocationViewViewModel {
 
   // MARK: - Methods
   public func fetchLocations() {
-    Service.shared.execute(.listLocationsRequest, expecting: String.self) { result in
+    Service.shared.execute(.listLocationsRequest,
+                           expecting: GetAllLocationsResponse.self) { [weak self] result in
       switch result {
       case .success(let success):
-        break
+        self?.apiInfo = success.info
+        self?.locations = success.results
+        DispatchQueue.main.async {
+          self?.delegate?.didFetchInitialLocation()
+        }
       case .failure(let failure):
         break
       }

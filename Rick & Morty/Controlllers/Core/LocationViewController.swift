@@ -21,6 +21,8 @@ final class LocationViewController: UIViewController {
     title = "Locations"
     addSearchButtton()
     addConstraints()
+    viewModel.delegate = self
+    viewModel.fetchLocations()
   }
 
   // MARK: - Methods
@@ -41,5 +43,12 @@ final class LocationViewController: UIViewController {
       primaryView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
       primaryView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor)
     ])
+  }
+}
+
+// MARK: - LocationViewViewModelDelegate Extension
+extension LocationViewController: LocationViewViewModelDelegate {
+  func didFetchInitialLocation() {
+    primaryView.configure(with: viewModel)
   }
 }
