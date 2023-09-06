@@ -60,6 +60,8 @@
 		36F32BA72A3E4E5C00D525F3 /* EpisodeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F32BA62A3E4E5C00D525F3 /* EpisodeListView.swift */; };
 		36F32BA92A3F9AA600D525F3 /* EpisodeListViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F32BA82A3F9AA600D525F3 /* EpisodeListViewViewModel.swift */; };
 		36F32BAB2A40C1A700D525F3 /* GetAllEpisodesResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F32BAA2A40C1A700D525F3 /* GetAllEpisodesResponse.swift */; };
+		36F984F32AA8F99600A7BD7B /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F984F22AA8F99600A7BD7B /* LocationTableViewCell.swift */; };
+		36F984F62AA8FA8600A7BD7B /* LocationTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F984F52AA8FA8600A7BD7B /* LocationTableViewCellViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -118,6 +120,8 @@
 		36F32BA62A3E4E5C00D525F3 /* EpisodeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeListView.swift; sourceTree = "<group>"; };
 		36F32BA82A3F9AA600D525F3 /* EpisodeListViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodeListViewViewModel.swift; sourceTree = "<group>"; };
 		36F32BAA2A40C1A700D525F3 /* GetAllEpisodesResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetAllEpisodesResponse.swift; sourceTree = "<group>"; };
+		36F984F22AA8F99600A7BD7B /* LocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
+		36F984F52AA8FA8600A7BD7B /* LocationTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableViewCellViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				3633CF482A9A9A47004A329D /* LocationView.swift */,
+				36F984F22AA8F99600A7BD7B /* LocationTableViewCell.swift */,
 			);
 			path = Location;
 			sourceTree = "<group>";
@@ -266,13 +271,13 @@
 		36853FAA2A003A2600D8F79E /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				36F984F42AA8FA6D00A7BD7B /* Location */,
 				360BC6632A5219490000ED69 /* Settings */,
 				36E308D42A479DEC00D26C52 /* EpisodeDetails */,
 				366CC33B2A098D3C007BACE1 /* CharacterListViewViewModel.swift */,
 				366CC3442A10191B007BACE1 /* CharacterCollectionViewCellViewModel.swift */,
 				36C1AE2F2A1FEFE1005E67AF /* CharacterDetails */,
 				36F32BA82A3F9AA600D525F3 /* EpisodeListViewViewModel.swift */,
-				3633CF4A2A9A9D86004A329D /* LocationViewViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -376,6 +381,15 @@
 			path = Episode;
 			sourceTree = "<group>";
 		};
+		36F984F42AA8FA6D00A7BD7B /* Location */ = {
+			isa = PBXGroup;
+			children = (
+				3633CF4A2A9A9D86004A329D /* LocationViewViewModel.swift */,
+				36F984F52AA8FA8600A7BD7B /* LocationTableViewCellViewModel.swift */,
+			);
+			path = Location;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -458,12 +472,14 @@
 				365226F12A93DD5A0091CF31 /* SettingsView.swift in Sources */,
 				36C1AE2A2A1FEFA4005E67AF /* CharacterPhotoCollectionViewCell.swift in Sources */,
 				36853FB32A003C1500D8F79E /* Episode.swift in Sources */,
+				36F984F62AA8FA8600A7BD7B /* LocationTableViewCellViewModel.swift in Sources */,
 				36F32BA72A3E4E5C00D525F3 /* EpisodeListView.swift in Sources */,
 				36853FBC2A003CBF00D8F79E /* SettingsViewController.swift in Sources */,
 				36853FB62A003C8E00D8F79E /* CharacterViewController.swift in Sources */,
 				36853F942A00387500D8F79E /* AppDelegate.swift in Sources */,
 				36C1AE2C2A1FEFB1005E67AF /* CharacterInfoCollectionViewCell.swift in Sources */,
 				36853FB12A003C0A00D8F79E /* Character.swift in Sources */,
+				36F984F32AA8F99600A7BD7B /* LocationTableViewCell.swift in Sources */,
 				36C1AE352A1FF03D005E67AF /* CharacterEpisodeCollectionViewCellViewModel.swift in Sources */,
 				36853FAF2A003BC700D8F79E /* Location.swift in Sources */,
 				36F32BAB2A40C1A700D525F3 /* GetAllEpisodesResponse.swift in Sources */,

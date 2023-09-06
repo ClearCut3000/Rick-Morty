@@ -10,7 +10,7 @@ import UIKit
 final class LocationView: UIView {
 
   // MARK: - Properties:
-  private var viewModel: LocationViewViewModel? {
+  public private(set) var viewModel: LocationViewViewModel? {
     didSet {
       spinner.stopAnimating()
       table.isHidden = false
@@ -27,8 +27,8 @@ final class LocationView: UIView {
     table.translatesAutoresizingMaskIntoConstraints = false
     table.alpha = 0
     table.isHidden = true
-    table.register(UITableViewCell.self,
-                   forCellReuseIdentifier: "cell")
+    table.register(LocationTableViewCell.self,
+                   forCellReuseIdentifier: LocationTableViewCell.identifier)
     return table
   }()
 
@@ -89,17 +89,19 @@ extension LocationView: UITableViewDelegate {
 
 // MARK: - TableView DataSource Extension
 extension LocationView: UITableViewDataSource {
-  func numberOfSections(in tableView: UITableView) -> Int {
-    return 1
-  }
-
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return 1
+    return viewModel?.cellViewModels.count ?? 0
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-    cell.textLabel?.text = "Cell Text"
+    guard let cellViewModels = viewModel?.cellViewModels else {
+      fatalError()
+    }
+    guard let cell = tableView.dequeueReusableCell(withIdentifier: LocationTableViewCell.identifier, for: indexPath) as? LocationTableViewCell else {
+      fatalError()
+    }
+    let cellViewModel = cellViewModels[indexPath.row]
+    cell.textLabel?.text = cellViewModel.name
     return cell
   }
 }

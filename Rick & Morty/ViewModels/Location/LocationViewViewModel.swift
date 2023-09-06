@@ -14,9 +14,18 @@ protocol LocationViewViewModelDelegate: AnyObject {
 final class LocationViewViewModel {
 
   // MARK: - Properties
-  private var locations: [Location] = []
+  private var locations: [Location] = [] {
+    didSet {
+      for location in locations {
+        let cellViewModel = LocationTableViewCellViewModel(with: location)
+        if !cellViewModels.contains(cellViewModel) {
+          cellViewModels.append(cellViewModel)
+        }
+      }
+    }
+  }
   private var apiInfo: GetAllLocationsResponse.Info?
-  private var cellViewModels: [String] = []
+  public private(set) var cellViewModels: [LocationTableViewCellViewModel] = []
   private var hasMoreResults: Bool {
     return false
   }
