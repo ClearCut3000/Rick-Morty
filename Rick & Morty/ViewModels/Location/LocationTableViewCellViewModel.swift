@@ -20,11 +20,11 @@ struct LocationTableViewCellViewModel: Hashable, Equatable {
   }
 
   public var type: String {
-    return location.type
+    return "Type: " + location.type
   }
 
   public var dimension: String {
-    return location.dimension
+    return location.dimension == "unknown" ? "Unknown dimension" : location.dimension
   }
 
   static func == (lhs: LocationTableViewCellViewModel, rhs: LocationTableViewCellViewModel) -> Bool {

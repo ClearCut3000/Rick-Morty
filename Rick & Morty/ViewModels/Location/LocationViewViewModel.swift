@@ -32,11 +32,15 @@ final class LocationViewViewModel {
   weak var delegate: LocationViewViewModelDelegate?
 
   // MARK: - Init
-  init() {
-
-  }
+  init() {}
 
   // MARK: - Methods
+  public func location(at index: Int) -> Location? {
+    guard index >= locations.count else {
+      return nil
+    }
+    return self.locations[index]
+  }
   public func fetchLocations() {
     Service.shared.execute(.listLocationsRequest,
                            expecting: GetAllLocationsResponse.self) { [weak self] result in
