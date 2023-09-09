@@ -11,11 +11,23 @@ import UIKit
 final class SearchViewController: UIViewController {
 
   // MARK: - Properties
+  /// Configuration for search session
   struct Config {
     enum SearchType {
       case character
       case episode
       case location
+
+      var title: String {
+        switch self {
+        case .character:
+          return "Search Characters"
+        case .episode:
+          return "Search Episode"
+        case .location:
+          return "Search Location"
+        }
+      }
     }
     let type: SearchType
   }
@@ -34,7 +46,7 @@ final class SearchViewController: UIViewController {
   // MARK: - Lifecycle
   override func viewDidLoad() {
     super.viewDidLoad()
-    title = "Search"
+    title = config.type.title
     view.backgroundColor = .systemBackground
   }
   

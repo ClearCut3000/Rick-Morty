@@ -1,22 +1,23 @@
 //
-//  EpisodeDetailViewController.swift
+//  LocationDetailViewController.swift
 //  Rick & Morty
 //
-//  Created by Николай Никитин on 13.06.2023.
+//  Created by Николай Никитин on 07.09.2023.
 //
 
 import UIKit
 
-final class EpisodeDetailViewController: UIViewController {
+final class LocationDetailViewController: UIViewController {
 
   // MARK: - Properties
-  private let viewModel: EpisodeDetailViewViewModel
+  private let viewModel: LocationDetailViewViewModel
 
-  private let detailView = EpisodeDetailView()
+  private let detailView = LocationDetailView()
 
   // MARK: - Init's
-  init(url: URL?) {
-    self.viewModel = .init(endpointURL: url)
+  init(location: Location) {
+    let url = URL(string: location.url)
+    self.viewModel = LocationDetailViewViewModel(endpointURL: url)
     super.init(nibName: nil, bundle: nil)
   }
 
@@ -31,9 +32,9 @@ final class EpisodeDetailViewController: UIViewController {
     detailView.delegate = self
     viewModel.delegate = self
     addConstraints()
-    title = "Episode"
+    title = "Location"
     navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .action, target: self, action: #selector(didTapShare))
-    viewModel.fetchEpisodeData()
+    viewModel.fetchLocationData()
   }
 
   // MARK: - Methods
@@ -47,24 +48,26 @@ final class EpisodeDetailViewController: UIViewController {
   }
 
   private func addSearchButton() {
-    
+
   }
 
   @objc private func didTapShare() {
-
+    let viewController = SearchViewController(config: .init(type: .location))
+    viewController.navigationItem.largeTitleDisplayMode = .never
+    navigationController?.pushViewController(viewController, animated: true)
   }
 }
 
-// MARK: - EpisodeDetailViewViewModelDelegate Extension
-extension EpisodeDetailViewController: EpisodeDetailViewViewModelDelegate {
-  func didFetchEpisodeDetails() {
+// MARK: - LocationDetailViewViewModelDelegate Extension
+extension LocationDetailViewController: LocationDetailViewViewModelDelegate {
+  func didFetchLocationDetails() {
     detailView.configure(with: viewModel)
   }
 }
 
-// MARK: - EpisodeDetailViewDelegate Protocol Extension
-extension EpisodeDetailViewController: EpisodeDetailViewDelegate {
-  func episodeDetailViewDelegate(_ detailView: EpisodeDetailView, didSelect character: Character) {
+// MARK: - LocationDetailViewDelegate Protocol Extension
+extension LocationDetailViewController: LocationDetailViewDelegate {
+  func episodeDetailViewDelegate(_ detailView: LocationDetailView, didSelect character: Character) {
     let viewController = CharacterDetailViewController(viewModel: .init(character: character))
     viewController.title = character.name
     viewController.navigationItem.largeTitleDisplayMode = .never
