@@ -53,7 +53,16 @@ final class SearchViewController: UIViewController {
     view.backgroundColor = .systemBackground
     view.addSubview(searchView)
     addConstraints()
-    navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Search", style: .done, target: self, action: #selector(didTapExecuteSearch))
+    navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Search", 
+                                                        style: .done,
+                                                        target: self,
+                                                        action: #selector(didTapExecuteSearch))
+    searchView.delegate = self
+  }
+
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
+    searchView.presentKeeyboard()
   }
 
   // MARK: - Methods
@@ -69,5 +78,12 @@ final class SearchViewController: UIViewController {
 
   @objc private func didTapExecuteSearch() {
 
+  }
+}
+
+// MARK: Extension
+extension SearchViewController: SearchViewDelegate {
+  func searchView(_ searchView: SearchView, didSelectOption option: SearchInputViewViewModel.DynamicOptions) {
+    
   }
 }
