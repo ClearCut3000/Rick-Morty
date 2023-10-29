@@ -15,6 +15,17 @@ final class SearchInputViewViewModel {
     case status = "Status"
     case gender = "Geender"
     case locationType = "Location Type"
+
+    var choises: [String] {
+      switch self {
+      case .status:
+        return ["alive", "dead", "unknown"]
+      case .gender:
+        return ["male", "female", "genderless", "unknown"]
+      case .locationType:
+        return ["cluster", "planet", "space station", "microverse"]
+      }
+    }
   }
   public var hasDynamicOptions: Bool {
     switch self.type {

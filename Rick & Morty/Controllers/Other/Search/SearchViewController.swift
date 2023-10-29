@@ -84,6 +84,11 @@ final class SearchViewController: UIViewController {
 // MARK: Extension
 extension SearchViewController: SearchViewDelegate {
   func searchView(_ searchView: SearchView, didSelectOption option: SearchInputViewViewModel.DynamicOptions) {
-    
+    let viewController = SearchOptionPickerViewController(option: option) { selection in
+
+    }
+    viewController.sheetPresentationController?.detents = [.medium()]
+    viewController.sheetPresentationController?.prefersGrabberVisible = true
+    present(viewController, animated: true)
   }
 }
