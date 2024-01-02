@@ -18,6 +18,14 @@ final class SearchViewController: UIViewController {
       case episode
       case location
 
+      var endpoint: Endpoint {
+        switch self {
+        case .character: return .character
+        case .episode: return .episode
+        case .location: return .location
+        }
+      }
+
       var title: String {
         switch self {
         case .character:
