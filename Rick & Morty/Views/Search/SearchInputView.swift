@@ -10,8 +10,12 @@ import UIKit
 protocol SearchInputViewDelegate: AnyObject {
   func searchInputView(_ inputView: SearchInputView,
                        didSelectOption option: SearchInputViewViewModel.DynamicOptions)
+  func searchInputView(_ inputView: SearchInputView,
+                       didChangeSearchText text: String)
+  func searchInputViewDidTapSearchKeyboard(_ inputView: SearchInputView)
 }
 
+/// View for top part of search screen with search bar and options
 final class SearchInputView: UIView {
 
   // MARK: - Properties
@@ -41,6 +45,7 @@ final class SearchInputView: UIView {
     translatesAutoresizingMaskIntoConstraints = false
     addSubviews(searchBar)
     addConstraint()
+    searchBar.delegate = self
   }
   
   required init?(coder: NSCoder) {
@@ -125,5 +130,17 @@ final class SearchInputView: UIView {
     button.tag = tag
     button.layer.cornerRadius = 6
     return button
+  }
+}
+
+// MARK: - UISearchBarDelegate Extension
+extension SearchInputView: UISearchBarDelegate {
+  func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+    delegate?.searchInputView(self, didChangeSearchText: searchText)
+  }
+
+  func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+    searchBar.resignFirstResponder()
+    delegate?.searchInputViewDidTapSearchKeyboard(self)
   }
 }

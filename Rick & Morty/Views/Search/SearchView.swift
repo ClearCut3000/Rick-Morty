@@ -82,6 +82,14 @@ extension SearchView: UICollectionViewDataSource {
 
 // MARK: - SearchInputViewDelegate Extension
 extension SearchView: SearchInputViewDelegate {
+  func searchInputViewDidTapSearchKeyboard(_ inputView: SearchInputView) {
+    viewModel.executeSearch()
+  }
+  
+  func searchInputView(_ inputView: SearchInputView, didChangeSearchText text: String) {
+    viewModel.set(query: text)
+  }
+  
   func searchInputView(_ inputView: SearchInputView, didSelectOption option: SearchInputViewViewModel.DynamicOptions) {
     delegate?.searchView(self, didSelectOption: option)
   }

@@ -24,7 +24,8 @@ final class SearchViewViewModel {
   // MARK: - Methods
   public func executeSearch() {
     /// Build arguments
-    var queryParameters: [URLQueryItem] =  [URLQueryItem(name: "name", value: searchText)]
+    var queryParameters: [URLQueryItem] =  [URLQueryItem(name: "name",
+                                                         value: searchText.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed))]
 
     /// Add options
     queryParameters.append(contentsOf: optionMap.enumerated().compactMap({ _, element in
@@ -48,6 +49,7 @@ final class SearchViewViewModel {
     }
 
     /// Notify view
+
   }
 
   public func registerSearchResultBlock(_ block: @escaping (() -> Void)) {
