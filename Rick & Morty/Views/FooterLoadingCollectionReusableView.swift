@@ -45,3 +45,4 @@ final class FooterLoadingCollectionReusableView: UICollectionReusableView {
     spinner.startAnimating()
   }
 }
+

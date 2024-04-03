@@ -14,7 +14,7 @@ final class SearchViewViewModel {
   private var optionMap: [SearchInputViewViewModel.DynamicOptions: String] = [:]
   private var optionMapUpdateBlock: (((SearchInputViewViewModel.DynamicOptions, String)) -> Void)?
   private var searchText = ""
-  private var searchResultBlock: (() -> Void)?
+  private var searchResultBlock: ((SearchResultViewModel) -> Void)?
 
   // MARK: - Init
   init(config: SearchViewController.Config) {
@@ -38,21 +38,21 @@ final class SearchViewViewModel {
     let request = Request(endpoint: config.type.endpoint,
                           queryParameters: queryParameters)
 
-    Service.shared.execute(request,
-                           expecting: String.self) { result in
-      switch result {
-      case .success(let model):
-        print("Success: \(model)")
-      case .failure(let error):
-        break
-      }
+    switch config.type.endpoint {
+    case .character:
+      makeSearchAPICall(GetAllCharactersResponse.self, request: request)
+    case .episode:
+      makeSearchAPICall(GetAllEpisodesResponse.self, request: request)
+    case .location:
+      makeSearchAPICall(GetAllLocationsResponse.self, request: request)
     }
+
 
     /// Notify view
 
   }
 
-  public func registerSearchResultBlock(_ block: @escaping (() -> Void)) {
+  public func registerSearchResultBlock(_ block: @escaping ((SearchResultViewModel) -> Void)) {
     self.searchResultBlock = block
   }
 
@@ -68,5 +68,41 @@ final class SearchViewViewModel {
 
   public func registerOptionChangeBlock(_ block: @escaping ((SearchInputViewViewModel.DynamicOptions, String)) -> Void) {
     self.optionMapUpdateBlock = block
+  }
+
+  private func processSearchResults(_ model: Codable) {
+    var resultsViewModel: SearchResultViewModel?
+    if let charactersResult = model as? GetAllCharactersResponse {
+      resultsViewModel = .characters(charactersResult.results.compactMap({
+        return CharacterCollectionViewCellViewModel(characterName: $0.name,
+                                                    characterStatus: $0.status,
+                                                    characterImageURL: URL(string: $0.image))
+      }))
+    } else if let episodesResult = model as? GetAllEpisodesResponse {
+      resultsViewModel = .episodes(episodesResult.results.compactMap ({
+        return CharacterEpisodeCollectionViewCellViewModel(episodeDataURL: URL(string: $0.url))
+      }))
+    } else if let locationsResult = model as? GetAllLocationsResponse {
+      resultsViewModel = .locations(locationsResult.results.compactMap({
+        return LocationTableViewCellViewModel(with: $0)
+      }))
+    }
+    if let results = resultsViewModel {
+      self.searchResultBlock?(results)
+    } else {
+      //Error
+    }
+  }
+
+  private func makeSearchAPICall<T: Codable>(_ type: T.Type, request: Request) {
+    Service.shared.execute(request,
+                           expecting: type) { [weak self] result in
+      switch result {
+      case .success(let model):
+        self?.processSearchResults(model)
+      case .failure(let error):
+        break
+      }
+    }
   }
 }

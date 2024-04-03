@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+enum SearchResultViewModel {
+  case characters([CharacterCollectionViewCellViewModel])
+  case episodes([CharacterEpisodeCollectionViewCellViewModel])
+  case locations([LocationTableViewCellViewModel])
+}
