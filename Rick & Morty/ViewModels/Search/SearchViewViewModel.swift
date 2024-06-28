@@ -15,6 +15,7 @@ final class SearchViewViewModel {
   private var optionMapUpdateBlock: (((SearchInputViewViewModel.DynamicOptions, String)) -> Void)?
   private var searchText = ""
   private var searchResultBlock: ((SearchResultViewModel) -> Void)?
+  private var noResultsBlock: (() -> Void)?
 
   // MARK: - Init
   init(config: SearchViewController.Config) {
@@ -26,7 +27,6 @@ final class SearchViewViewModel {
     /// Build arguments
     var queryParameters: [URLQueryItem] =  [URLQueryItem(name: "name",
                                                          value: searchText.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed))]
-
     /// Add options
     queryParameters.append(contentsOf: optionMap.enumerated().compactMap({ _, element in
       let key: SearchInputViewViewModel.DynamicOptions = element.key
@@ -46,14 +46,16 @@ final class SearchViewViewModel {
     case .location:
       makeSearchAPICall(GetAllLocationsResponse.self, request: request)
     }
-
-
     /// Notify view
 
   }
 
   public func registerSearchResultBlock(_ block: @escaping ((SearchResultViewModel) -> Void)) {
     self.searchResultBlock = block
+  }
+
+  public func registerNoResultsBlock(_ block: @escaping (() -> Void)) {
+    self.noResultsBlock = block
   }
 
   public func set(query text: String) {
@@ -68,6 +70,10 @@ final class SearchViewViewModel {
 
   public func registerOptionChangeBlock(_ block: @escaping ((SearchInputViewViewModel.DynamicOptions, String)) -> Void) {
     self.optionMapUpdateBlock = block
+  }
+
+  private func handleNoResults() {
+    noResultsBlock?()
   }
 
   private func processSearchResults(_ model: Codable) {
@@ -90,7 +96,7 @@ final class SearchViewViewModel {
     if let results = resultsViewModel {
       self.searchResultBlock?(results)
     } else {
-      //Error
+      handleNoResults()
     }
   }
 
@@ -101,6 +107,7 @@ final class SearchViewViewModel {
       case .success(let model):
         self?.processSearchResults(model)
       case .failure(let error):
+        self?.handleNoResults()
         break
       }
     }

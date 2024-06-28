@@ -20,6 +20,7 @@ final class SearchView: UIView {
   // MARK: - Subview's
   private let noResultsView = NoSearchResultsView()
   private let searchInputView = SearchInputView()
+  private let resultsView = SearchResultsView()
 
   // MARK: - Init's
   init(frame: CGRect, viewModel: SearchViewViewModel) {
@@ -27,16 +28,11 @@ final class SearchView: UIView {
     super.init(frame: frame)
     backgroundColor = .systemBackground
     translatesAutoresizingMaskIntoConstraints = false
-    addSubviews(noResultsView, searchInputView)
+    addSubviews(resultsView, noResultsView, searchInputView)
     addConstraints()
     searchInputView.configure(with: .init(type: viewModel.config.type))
     searchInputView.delegate = self
-    viewModel.registerOptionChangeBlock { tuple in
-      self.searchInputView.update(option: tuple.0, value: tuple.1)
-    }
-    viewModel.registerSearchResultBlock { results in
-      
-    }
+    setupBlocks(viewModel)
   }
 
   required init?(coder: NSCoder) {
@@ -55,7 +51,31 @@ final class SearchView: UIView {
       noResultsView.heightAnchor.constraint(equalToConstant: 150),
       noResultsView.centerXAnchor.constraint(equalTo: centerXAnchor),
       noResultsView.centerYAnchor.constraint(equalTo: centerYAnchor),
+
+      resultsView.leftAnchor.constraint(equalTo: leftAnchor),
+      resultsView.rightAnchor.constraint(equalTo: rightAnchor),
+      resultsView.bottomAnchor.constraint(equalTo: bottomAnchor),
+      resultsView.topAnchor.constraint(equalTo: searchInputView.bottomAnchor),
     ])
+  }
+
+  private func setupBlocks(_ viewModel: SearchViewViewModel) {
+    viewModel.registerOptionChangeBlock { tuple in
+      self.searchInputView.update(option: tuple.0, value: tuple.1)
+    }
+    viewModel.registerSearchResultBlock { [weak self] results in
+      DispatchQueue.main.async {
+        self?.resultsView.configure(with: results)
+        self?.noResultsView.isHidden = true
+        self?.resultsView.isHidden = false
+      }
+    }
+    viewModel.registerNoResultsBlock { [weak self] in
+      DispatchQueue.main.async {
+        self?.noResultsView.isHidden = false
+        self?.resultsView.isHidden = true
+      }
+    }
   }
 
   public func presentKeeyboard() {
@@ -65,6 +85,7 @@ final class SearchView: UIView {
 
 // MARK: - CollectionView Delegate Protocol Extension
 extension SearchView: UICollectionViewDelegate {
+  
 }
 
 // MARK: - CollectionViewDataSouce Protocol Extension
@@ -88,11 +109,11 @@ extension SearchView: SearchInputViewDelegate {
   func searchInputViewDidTapSearchKeyboard(_ inputView: SearchInputView) {
     viewModel.executeSearch()
   }
-  
+
   func searchInputView(_ inputView: SearchInputView, didChangeSearchText text: String) {
     viewModel.set(query: text)
   }
-  
+
   func searchInputView(_ inputView: SearchInputView, didSelectOption option: SearchInputViewViewModel.DynamicOptions) {
     delegate?.searchView(self, didSelectOption: option)
   }
